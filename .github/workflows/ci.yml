@@ -30,6 +30,12 @@ jobs:
             console.log(pkg.contributes.themes.length+' themes, all present');
           "
 
+      - name: The generated CSS matches the palettes
+        run: |
+          node scripts/css.mjs
+          git diff --exit-code css/ \
+            || { echo "css/ is stale. Run: node scripts/css.mjs"; exit 1; }
+
       - name: The swatch sheet matches the palettes
         run: |
           node scripts/swatches.mjs
