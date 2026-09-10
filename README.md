@@ -77,8 +77,24 @@ node scripts/vendor.mjs --list      # the palettes and type pairings to choose f
 It writes `src/theme/` and, with `--js`, `src/lib/`, and stamps every file with a header
 naming where it came from and saying not to edit the copy.
 
-Four repositories use it, each on a different type pairing, and the shared files were
-byte-identical across all four before this script existed. That is the argument for copying
+### All of them at once, for something that picks one while it runs
+
+```bash
+node scripts/vendor.mjs ../hikari --palettes-dir widgets/palettes
+```
+
+The other shape a consumer can want, and it exists because one of them does: a desktop app
+whose settings panel offers a palette needs every palette on disk, not one chosen when it
+was vendored. It copies the single-scheme files rather than the `pair-*` ones, because a
+picker is the user saying which they want and a pair is the operating system saying it.
+
+Which files those are is worked out by elimination rather than from a list here, so a
+palette added later can be picked without anyone remembering to add it. A list would go
+stale and the failure would be a palette that exists and cannot be chosen, which is the
+kind of thing nobody notices.
+
+Five repositories use it, four of them on a type pairing of their own, and the shared
+files were byte-identical across all four browser apps before this script existed. That is the argument for copying
 rather than publishing a package: nobody had edited a copy, so the only thing missing was a
 way to refresh one that is not a person remembering six paths.
 
