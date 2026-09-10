@@ -61,9 +61,50 @@ It sets no colours at all, so it cannot fight the palette beside it.
 ```css
 @import "./theme/palette.css";   /* one pair */
 @import "./theme/base.css";      /* structure */
+@import "./theme/type-neon-sign.css";  /* optional: typography */
+@import "./theme/texture.css";         /* optional: grain, scale, optical detail */
 ```
 
 Three of my other repositories use it, each on a different palette.
+
+## Typography
+
+Colour was the easy half. A page where the heading and the paragraph are the same face at
+two sizes reads as a default, because it is one, and no palette fixes that.
+
+`css/type-*.css` sets `--font-display`, `--font-body` and `--font-mono` plus the tracking
+and leading that suit them. `base.css` reads those variables and falls back to the system
+stack, so loading a type file is optional and loading none changes nothing.
+
+| | Display | Body | For |
+| --- | --- | --- | --- |
+| **Paper Lantern** | Instrument Serif | Instrument Sans | Reading. A serif headline over a sans body is the cheapest real contrast there is |
+| **Neon Sign** | Syne | Manrope | Something with a face. Wide, high-contrast, read once and remembered |
+| **Night Terminal** | Archivo | JetBrains Mono | Screens that are mostly numbers |
+
+All six faces are OFL. Each file carries the link that loads it, or self-host the woff2 if
+the page has to work offline.
+
+Two families are deliberately absent. **Inter** appears in roughly one in six published
+pairings and is the default of every generated page; **Space Grotesk** is going the same
+way. Neither is a bad typeface. Both are now a tell.
+
+## Texture
+
+`css/texture.css` is the character layer, separate from `base.css` because structure is
+not optional and this is.
+
+- **Grain.** A perfectly even surface is what the eye reads as untouched. An SVG
+  `fractalNoise` overlay at 3.5% breaks it up, costs no request, and is only noticeable
+  once you switch it off. It backs off under `prefers-reduced-motion` and disappears
+  under `prefers-contrast: more`.
+- **A type scale from one ratio**, with a skipped step between body and display. Real
+  hierarchy comes from the gap, not from stacking every size onto one page.
+- **A measure of 68 characters.** Prose the full width of the window is not a layout.
+- **Optical detail**: hanging punctuation, true small caps rather than shrunken capitals,
+  and old-style figures in prose while tables keep tabular lining ones.
+- **Unequal vertical rhythm.** Equal padding centres every block in its own box, which is
+  the stack every template produces.
 
 ## The swatch sheet is generated
 
