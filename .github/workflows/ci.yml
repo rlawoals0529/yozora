@@ -1,0 +1,37 @@
+name: CI
+on:
+  push: { branches: [main] }
+  pull_request:
+jobs:
+  themes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+
+      - name: Every theme file is valid JSON
+        run: |
+          for f in cli/*.json vscode/themes/*.json vscode/package.json; do
+            node -e "JSON.parse(require('fs').readFileSync('$f','utf8'))" || exit 1
+          done
+
+      - name: Every declared VS Code theme file exists
+        run: |
+          node -e "
+            const fs=require('fs');
+            const pkg=JSON.parse(fs.readFileSync('vscode/package.json','utf8'));
+            let bad=0;
+            for (const t of pkg.contributes.themes) {
+              const p='vscode/'+t.path.replace(/^\.\//,'');
+              if (!fs.existsSync(p)) { console.error('missing '+p+' for '+t.label); bad++; }
+            }
+            if (bad) process.exit(1);
+            console.log(pkg.contributes.themes.length+' themes, all present');
+          "
+
+      - name: The swatch sheet matches the palettes
+        run: |
+          node scripts/swatches.mjs
+          git diff --exit-code docs/palettes.svg \
+            || { echo "docs/palettes.svg is stale. Run: node scripts/swatches.mjs"; exit 1; }
