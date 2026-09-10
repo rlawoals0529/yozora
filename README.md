@@ -59,13 +59,35 @@ reader's own preference. A page that only looks right in one theme is not finish
 It sets no colours at all, so it cannot fight the palette beside it.
 
 ```css
-@import "./theme/palette.css";   /* one pair */
-@import "./theme/base.css";      /* structure */
-@import "./theme/type-neon-sign.css";  /* optional: typography */
-@import "./theme/texture.css";         /* optional: grain, scale, optical detail */
+@import "./theme/palette.css";      /* one pair */
+@import "./theme/base.css";         /* structure */
+@import "./theme/layout-flat.css";  /* optional: takes the boxes away */
+@import "./theme/motion.css";       /* optional: the reveal */
+@import "./theme/texture.css";      /* optional: grain, scale, optical detail */
+@import "./theme/type.css";         /* optional: typography */
 ```
 
-Three of my other repositories use it, each on a different palette.
+## Copying it into a project
+
+```bash
+node scripts/vendor.mjs ../tokenview --palette rain-lantern --type ink-study --js
+node scripts/vendor.mjs --list      # the palettes and type pairings to choose from
+```
+
+It writes `src/theme/` and, with `--js`, `src/lib/`, and stamps every file with a header
+naming where it came from and saying not to edit the copy.
+
+Four repositories use it, each on a different type pairing, and the shared files were
+byte-identical across all four before this script existed. That is the argument for copying
+rather than publishing a package: nobody had edited a copy, so the only thing missing was a
+way to refresh one that is not a person remembering six paths.
+
+A git dependency was the alternative and it is the wrong answer here. One of these
+repositories already depends on a private repo by git URL, and that is exactly why its CI
+cannot run `npm install` at all.
+
+Two files are per-project, because a project picks them: `palette.css` from one of the
+`pair-*` files, and `type.css` from one of the `type-*` files.
 
 ## Typography
 
@@ -120,6 +142,25 @@ not optional and this is.
   and old-style figures in prose while tables keep tabular lining ones.
 - **Unequal vertical rhythm.** Equal padding centres every block in its own box, which is
   the stack every template produces.
+
+## Motion
+
+`css/motion.css` and `js/` are the moving half, and they are here for the same reason the
+colours are: they were the same file in four projects.
+
+`motion.css` is the reveal, done in CSS so it costs no JavaScript. The travel is 6px, not
+24: a large one is the thing that reads as a template, because the eye follows the movement
+instead of the content.
+
+`js/motion.tsx` is a figure that counts to its value and a reveal that arrives in reading
+order. `js/reveal.ts` is two text reveals, a scramble and a split-flap. Both stop dead
+under `prefers-reduced-motion` rather than running shorter, because for some people this is
+a symptom trigger and not a preference.
+
+A motion library is fifty kilobytes to do this, and what it buys is the fade-and-slide every
+generated page already has. `--js` copies `motion.tsx`; `--reveal` copies `reveal.ts`,
+separately, because nothing uses it yet and a copy nothing imports is dead code that still
+has to be kept in step.
 
 ## The swatch sheet is generated
 
