@@ -81,6 +81,7 @@ stack, so loading a type file is optional and loading none changes nothing.
 | **Paper Lantern** | Instrument Serif | Instrument Sans | Reading. A serif headline over a sans body is the cheapest real contrast there is |
 | **Neon Sign** | Syne | Manrope | Something with a face. Wide, high-contrast, read once and remembered |
 | **Night Terminal** | Archivo | JetBrains Mono | Screens that are mostly numbers |
+| **Ink Study** | Fraunces | Chivo | Something that teaches. Fraunces has SOFT and WONK axes, so at display size it looks drawn rather than generated |
 
 All six faces are OFL. Each file carries the link that loads it, or self-host the woff2 if
 the page has to work offline.
@@ -88,6 +89,20 @@ the page has to work offline.
 Two families are deliberately absent. **Inter** appears in roughly one in six published
 pairings and is the default of every generated page; **Space Grotesk** is going the same
 way. Neither is a bad typeface. Both are now a tell.
+
+## Layout
+
+`css/layout-flat.css` takes the boxes away.
+
+`base.css` draws every `.panel` as a bordered card, and a column of identical bordered
+cards is the loudest tell that a page was assembled rather than designed: framing every
+section the same way says none of them matters more than another. This layer removes the
+frames and rebuilds the hierarchy out of space and type size, where it belongs.
+
+The rule it enforces: **keep one outlined thing on a screen, and let it be the one the
+reader is meant to act on.** An outline means "this one", and it stops meaning anything
+the moment there are six. Same for buttons, so one filled primary and the rest are words
+you can click.
 
 ## Texture
 
