@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1016" height="564" viewBox="0 0 1016 564" role="img" aria-label="All 15 palettes">
+  <rect width="1016" height="564" fill="#0b0b11"/>
+  
+    <g>
+      <rect x="14" y="14" width="320" height="96" rx="12" fill="#12121a" stroke="#4e3a68" stroke-opacity=".45"/>
+      <circle cx="40" cy="42" r="7" fill="#d1364a"/>
+      <text x="58" y="47" font-family="system-ui,sans-serif" font-size="14.5" font-weight="600" fill="#f7f0fa">Amethyst Yokai</text>
+      <text x="318" y="47" text-anchor="end" font-family="ui-monospace,monospace" font-size="10.5" fill="#7d6a96" opacity=".8">dark</text>
+      <rect x="30" y="64" width="24" height="24" rx="6" fill="#d1364a"/><rect x="60" y="64" width="24" height="24" rx="6" fill="#f7f0fa"/><rect x="90" y="64" width="24" height="24" rx="6" fill="#6fcf97"/><rect x="120" y="64" width="24" height="24" rx="6" fill="#e08a4d"/><rect x="150" y="64" width="24" height="24" rx="6" fill="#ff5d6b"/><rect x="180" y="64" width="24" height="24" rx="6" fill="#c9bfe0"/><rect x="210" y="64" width="24" height="24" rx="6" fill="#e08a4d"/><rect x="240" y="64" width="24" height="24" rx="6" fill="#4e3a68"/>
+    </g>
+    <g>
+      <rect x="348" y="14" width="320" height="96" rx="12" fill="#f6f3f7" stroke="#d9bcd9" stroke-opacity=".45"/>
+      <circle cx="374" cy="42" r="7" fill="#c2477a"/>
+      <text x="392" y="47" font-family="system-ui,sans-serif" font-size="14.5" font-weight="600" fill="#2a1f38">Cherry Blossom Dusk</text>
+      <text x="652" y="47" text-anchor="end" font-family="ui-monospace,monospace" font-size="10.5" fill="#a68fae" opacity=".8">light</text>
+      <rect x="364" y="64" width="24" height="24" rx="6" fill="#c2477a"/><rect x="394" y="64" width="24" height="24" rx="6" fill="#2a1f38"/><rect x="424" y="64" width="24" height="24" rx="6" fill="#3f8f6a"/><rect x="454" y="64" width="24" height="24" rx="6" fill="#d19a4a"/><rect x="484" y="64" width="24" height="24" rx="6" fill="#c2493b"/><rect x="514" y="64" width="24" height="24" rx="6" fill="#6f7fc2"/><rect x="544" y="64" width="24" height="24" rx="6" fill="#d19a4a"/><rect x="574" y="64" width="24" height="24" rx="6" fill="#d9bcd9"/>
+    </g>
+    <g>
+      <rect x="682" y="14" width="320" height="96" rx="12" fill="#12121a" stroke="#5c4a7a" stroke-opacity=".45"/>
+      <circle cx="708" cy="42" r="7" fill="#ff8f6b"/>
+      <text x="726" y="47" font-family="system-ui,sans-serif" font-size="14.5" font-weight="600" fill="#f7ecdd">Coral Horizon</text>
+      <text x="986" y="47" text-anchor="end" font-family="ui-monospace,monospace" font-size="10.5" fill="#8c7fa8" opacity=".8">dark</text>
+      <rect x="698" y="64" width="24" height="24" rx="6" fill="#ff8f6b"/><rect x="728" y="64" width="24" height="24" rx="6" fill="#f7ecdd"/><rect x="758" y="64" width="24" height="24" rx="6" fill="#5fd9a0"/><rect x="788" y="64" width="24" height="24" rx="6" fill="#ffb56b"/><rect x="818" y="64" width="24" height="24" rx="6" fill="#ff6b6b"/><rect x="848" y="64" width="24" height="24" rx="6" fill="#7fd0d9"/><rect x="878" y="64" width="24" height="24" rx="6" fill="#ffb56b"/><rect x="908" y="64" width="24" height="24" rx="6" fill="#5c4a7a"/>
+    </g>
+    <g>
+      <rect x="14" y="124" width="320" height="96" rx="12" fill="#f6f3f7" stroke="#c0bce8" stroke-opacity=".45"/>
+      <circle cx="40" cy="152" r="7" fill="#6f7fd6"/>
+      <text x="58" y="157" font-family="system-ui,sans-serif" font-size="14.5" font-weight="600" fill="#221f3c">Falling Stars</text>
+      <text x="318" y="157" text-anchor="end" font-family="ui-monospace,monospace" font-size="10.5" fill="#938fbc" opacity=".8">light</text>
+      <rect x="30" y="174" width="24" height="24" rx="6" fill="#6f7fd6"/><rect x="60" y="174" width="24" height="24" rx="6" fill="#221f3c"/><rect x="90" y="174" width="24" height="24" rx="6" fill="#3f8f6a"/><rect x="120" y="174" width="24" height="24" rx="6" fill="#d19a4a"/><rect x="150" y="174" width="24" height="24" rx="6" fill="#c2493b"/><rect x="180" y="174" width="24" height="24" rx="6" fill="#c26bab"/><rect x="210" y="174" width="24" height="24" rx="6" fill="#d19a4a"/><rect x="240" y="174" width="24" height="24" rx="6" fill="#c0bce8"/>
+    </g>
+    <g>
+      <rect x="348" y="124" width="320" height="96" rx="12" fill="#f6f3f7" stroke="#e0b8cf" stroke-opacity=".45"/>
+      <circle cx="374" cy="152" r="7" fill="#e0a13f"/>
+      <text x="392" y="157" font-family="system-ui,sans-serif" font-size="14.5" font-weight="600" fill="#3a2540">Moonlit Skyline</text>
+      <text x="652" y="157" text-anchor="end" font-family="ui-monospace,monospace" font-size="10.5" fill="#b48fa0" opacity=".8">light</text>
+      <rect x="364" y="174" width="24" height="24" rx="6" fill="#e0a13f"/><rect x="394" y="174" width="24" height="24" rx="6" fill="#3a2540"/><rect x="424" y="174" width="24" height="24" rx="6" fill="#4a9f6e"/><rect x="454" y="174" width="24" height="24" rx="6" fill="#e0a13f"/><rect x="484" y="174" width="24" height="24" rx="6" fill="#c2493b"/><rect x="514" y="174" width="24" height="24" rx="6" fill="#c2699e"/><rect x="544" y="174" width="24" height="24" rx="6" fill="#e0a13f"/><rect x="574" y="174" width="24" height="24" rx="6" fill="#e0b8cf"/>
+    </g>
+    <g>
+      <rect x="682" y="124" width="320" height="96" rx="12" fill="#12121a" stroke="#2f4d78" stroke-opacity=".45"/>
+      <circle cx="708" cy="152" r="7" fill="#cfe0ff"/>
+      <text x="726" y="157" font-family="system-ui,sans-serif" font-size="14.5" font-weight="600" fill="#eef3fc">Moonlit Village</text>
+      <text x="986" y="157" text-anchor="end" font-family="ui-monospace,monospace" font-size="10.5" fill="#5a7096" opacity=".8">dark</text>
+      <rect x="698" y="174" width="24" height="24" rx="6" fill="#cfe0ff"/><rect x="728" y="174" width="24" height="24" rx="6" fill="#eef3fc"/><rect x="758" y="174" width="24" height="24" rx="6" fill="#4fae8a"/><rect x="788" y="174" width="24" height="24" rx="6" fill="#f5a94f"/><rect x="818" y="174" width="24" height="24" rx="6" fill="#ff6b6b"/><rect x="848" y="174" width="24" height="24" rx="6" fill="#7fc9d1"/><rect x="878" y="174" width="24" height="24" rx="6" fill="#f5a94f"/><rect x="908" y="174" width="24" height="24" rx="6" fill="#2f4d78"/>
+    </g>
+    <g>
+      <rect x="14" y="234" width="320" height="96" rx="12" fill="#f6f3f7" stroke="#b9c3de" stroke-opacity=".45"/>
+      <circle cx="40" cy="262" r="7" fill="#d9663f"/>
+      <text x="58" y="267" font-family="system-ui,sans-serif" font-size="14.5" font-weight="600" fill="#1e2340">Neko Lantern</text>
+      <text x="318" y="267" text-anchor="end" font-family="ui-monospace,monospace" font-size="10.5" fill="#8791b0" opacity=".8">light</text>
+      <rect x="30" y="284" width="24" height="24" rx="6" fill="#d9663f"/><rect x="60" y="284" width="24" height="24" rx="6" fill="#1e2340"/><rect x="90" y="284" width="24" height="24" rx="6" fill="#3f8f6a"/><rect x="120" y="284" width="24" height="24" rx="6" fill="#d19a4a"/><rect x="150" y="284" width="24" height="24" rx="6" fill="#c2493b"/><rect x="180" y="284" width="24" height="24" rx="6" fill="#3f7fc7"/><rect x="210" y="284" width="24" height="24" rx="6" fill="#d9663f"/><rect x="240" y="284" width="24" height="24" rx="6" fill="#b9c3de"/>
+    </g>
+    <g>
+      <rect x="348" y="234" width="320" height="96" rx="12" fill="#f6f3f7" stroke="#e6bcd8" stroke-opacity=".45"/>
+      <circle cx="374" cy="262" r="7" fill="#d94f9e"/>
+      <text x="392" y="267" font-family="system-ui,sans-serif" font-size="14.5" font-weight="600" fill="#3a1f34">Plushie Pink</text>
+      <text x="652" y="267" text-anchor="end" font-family="ui-monospace,monospace" font-size="10.5" fill="#b891ad" opacity=".8">light</text>
+      <rect x="364" y="284" width="24" height="24" rx="6" fill="#d94f9e"/><rect x="394" y="284" width="24" height="24" rx="6" fill="#3a1f34"/><rect x="424" y="284" width="24" height="24" rx="6" fill="#4a9f6e"/><rect x="454" y="284" width="24" height="24" rx="6" fill="#d19a4a"/><rect x="484" y="284" width="24" height="24" rx="6" fill="#c2493b"/><rect x="514" y="284" width="24" height="24" rx="6" fill="#6f8fd6"/><rect x="544" y="284" width="24" height="24" rx="6" fill="#d19a4a"/><rect x="574" y="284" width="24" height="24" rx="6" fill="#e6bcd8"/>
+    </g>
+    <g>
+      <rect x="682" y="234" width="320" height="96" rx="12" fill="#12121a" stroke="#4a4270" stroke-opacity=".45"/>
+      <circle cx="708" cy="262" r="7" fill="#ff7a4d"/>
+      <text x="726" y="267" font-family="system-ui,sans-serif" font-size="14.5" font-weight="600" fill="#f7f0fa">Rain Lantern</text>
+      <text x="986" y="267" text-anchor="end" font-family="ui-monospace,monospace" font-size="10.5" fill="#7a7196" opacity=".8">dark</text>
+      <rect x="698" y="284" width="24" height="24" rx="6" fill="#ff7a4d"/><rect x="728" y="284" width="24" height="24" rx="6" fill="#f7f0fa"/><rect x="758" y="284" width="24" height="24" rx="6" fill="#6fcf97"/><rect x="788" y="284" width="24" height="24" rx="6" fill="#ffb877"/><rect x="818" y="284" width="24" height="24" rx="6" fill="#ff5d6b"/><rect x="848" y="284" width="24" height="24" rx="6" fill="#3fb8b0"/><rect x="878" y="284" width="24" height="24" rx="6" fill="#ffb877"/><rect x="908" y="284" width="24" height="24" rx="6" fill="#4a4270"/>
+    </g>
+    <g>
+      <rect x="14" y="344" width="320" height="96" rx="12" fill="#12121a" stroke="#525a80" stroke-opacity=".45"/>
+      <circle cx="40" cy="372" r="7" fill="#f2789e"/>
+      <text x="58" y="377" font-family="system-ui,sans-serif" font-size="14.5" font-weight="600" fill="#f5eef2">Rooftop Dusk</text>
+      <text x="318" y="377" text-anchor="end" font-family="ui-monospace,monospace" font-size="10.5" fill="#7b7fa0" opacity=".8">dark</text>
+      <rect x="30" y="394" width="24" height="24" rx="6" fill="#f2789e"/><rect x="60" y="394" width="24" height="24" rx="6" fill="#f5eef2"/><rect x="90" y="394" width="24" height="24" rx="6" fill="#6fcf97"/><rect x="120" y="394" width="24" height="24" rx="6" fill="#ffb066"/><rect x="150" y="394" width="24" height="24" rx="6" fill="#ff6b6b"/><rect x="180" y="394" width="24" height="24" rx="6" fill="#5fa0b0"/><rect x="210" y="394" width="24" height="24" rx="6" fill="#ffb066"/><rect x="240" y="394" width="24" height="24" rx="6" fill="#525a80"/>
+    </g>
+    <g>
+      <rect x="348" y="344" width="320" height="96" rx="12" fill="#f6f3f7" stroke="#c2ac82" stroke-opacity=".45"/>
+      <circle cx="374" cy="372" r="7" fill="#e0932c"/>
+      <text x="392" y="377" font-family="system-ui,sans-serif" font-size="14.5" font-weight="600" fill="#2a2013">Sakura Lake</text>
+      <text x="652" y="377" text-anchor="end" font-family="ui-monospace,monospace" font-size="10.5" fill="#a08a68" opacity=".8">light</text>
+      <rect x="364" y="394" width="24" height="24" rx="6" fill="#e0932c"/><rect x="394" y="394" width="24" height="24" rx="6" fill="#2a2013"/><rect x="424" y="394" width="24" height="24" rx="6" fill="#3f8f5c"/><rect x="454" y="394" width="24" height="24" rx="6" fill="#e0932c"/><rect x="484" y="394" width="24" height="24" rx="6" fill="#c23b3b"/><rect x="514" y="394" width="24" height="24" rx="6" fill="#1c7a91"/><rect x="544" y="394" width="24" height="24" rx="6" fill="#e0932c"/><rect x="574" y="394" width="24" height="24" rx="6" fill="#c2ac82"/>
+    </g>
+    <g>
+      <rect x="682" y="344" width="320" height="96" rx="12" fill="#f6f3f7" stroke="#a9c6d3" stroke-opacity=".45"/>
+      <circle cx="708" cy="372" r="7" fill="#e0559c"/>
+      <text x="726" y="377" font-family="system-ui,sans-serif" font-size="14.5" font-weight="600" fill="#1c2c1a">Sakura Road</text>
+      <text x="986" y="377" text-anchor="end" font-family="ui-monospace,monospace" font-size="10.5" fill="#7c9a80" opacity=".8">light</text>
+      <rect x="698" y="394" width="24" height="24" rx="6" fill="#e0559c"/><rect x="728" y="394" width="24" height="24" rx="6" fill="#1c2c1a"/><rect x="758" y="394" width="24" height="24" rx="6" fill="#2f8f52"/><rect x="788" y="394" width="24" height="24" rx="6" fill="#b8802a"/><rect x="818" y="394" width="24" height="24" rx="6" fill="#c23b3b"/><rect x="848" y="394" width="24" height="24" rx="6" fill="#2a9a9a"/><rect x="878" y="394" width="24" height="24" rx="6" fill="#b8802a"/><rect x="908" y="394" width="24" height="24" rx="6" fill="#a9c6d3"/>
+    </g>
+    <g>
+      <rect x="14" y="454" width="320" height="96" rx="12" fill="#12121a" stroke="#454a70" stroke-opacity=".45"/>
+      <circle cx="40" cy="482" r="7" fill="#ff5f78"/>
+      <text x="58" y="487" font-family="system-ui,sans-serif" font-size="14.5" font-weight="600" fill="#f5f0ff">Starfall Dusk</text>
+      <text x="318" y="487" text-anchor="end" font-family="ui-monospace,monospace" font-size="10.5" fill="#6a6f96" opacity=".8">dark</text>
+      <rect x="30" y="504" width="24" height="24" rx="6" fill="#ff5f78"/><rect x="60" y="504" width="24" height="24" rx="6" fill="#f5f0ff"/><rect x="90" y="504" width="24" height="24" rx="6" fill="#6fe0a8"/><rect x="120" y="504" width="24" height="24" rx="6" fill="#ffb15c"/><rect x="150" y="504" width="24" height="24" rx="6" fill="#ff4d5e"/><rect x="180" y="504" width="24" height="24" rx="6" fill="#cfd6ff"/><rect x="210" y="504" width="24" height="24" rx="6" fill="#ffb15c"/><rect x="240" y="504" width="24" height="24" rx="6" fill="#454a70"/>
+    </g>
+    <g>
+      <rect x="348" y="454" width="320" height="96" rx="12" fill="#12121a" stroke="#4b5170" stroke-opacity=".45"/>
+      <circle cx="374" cy="482" r="7" fill="#8b7cf6"/>
+      <text x="392" y="487" font-family="system-ui,sans-serif" font-size="14.5" font-weight="600" fill="#eef1ff">Twilight Comet</text>
+      <text x="652" y="487" text-anchor="end" font-family="ui-monospace,monospace" font-size="10.5" fill="#6b7394" opacity=".8">dark</text>
+      <rect x="364" y="504" width="24" height="24" rx="6" fill="#8b7cf6"/><rect x="394" y="504" width="24" height="24" rx="6" fill="#eef1ff"/><rect x="424" y="504" width="24" height="24" rx="6" fill="#4fd8c4"/><rect x="454" y="504" width="24" height="24" rx="6" fill="#f5b878"/><rect x="484" y="504" width="24" height="24" rx="6" fill="#ff5d73"/><rect x="514" y="504" width="24" height="24" rx="6" fill="#4fd8c4"/><rect x="544" y="504" width="24" height="24" rx="6" fill="#f5b878"/><rect x="574" y="504" width="24" height="24" rx="6" fill="#4b5170"/>
+    </g>
+    <g>
+      <rect x="682" y="454" width="320" height="96" rx="12" fill="#f6f3f7" stroke="#c1bce6" stroke-opacity=".45"/>
+      <circle cx="708" cy="482" r="7" fill="#8b6fd1"/>
+      <text x="726" y="487" font-family="system-ui,sans-serif" font-size="14.5" font-weight="600" fill="#221f3a">Wisteria Alley</text>
+      <text x="986" y="487" text-anchor="end" font-family="ui-monospace,monospace" font-size="10.5" fill="#948fb8" opacity=".8">light</text>
+      <rect x="698" y="504" width="24" height="24" rx="6" fill="#8b6fd1"/><rect x="728" y="504" width="24" height="24" rx="6" fill="#221f3a"/><rect x="758" y="504" width="24" height="24" rx="6" fill="#3f8f6a"/><rect x="788" y="504" width="24" height="24" rx="6" fill="#d19a4a"/><rect x="818" y="504" width="24" height="24" rx="6" fill="#c2493b"/><rect x="848" y="504" width="24" height="24" rx="6" fill="#3f9ecf"/><rect x="878" y="504" width="24" height="24" rx="6" fill="#d19a4a"/><rect x="908" y="504" width="24" height="24" rx="6" fill="#c1bce6"/>
+    </g>
+</svg>

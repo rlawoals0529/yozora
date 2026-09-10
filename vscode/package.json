@@ -1,0 +1,97 @@
+{
+  "name": "yozora-themes",
+  "displayName": "Yozora",
+  "description": "Fifteen soft, mostly nocturnal colour themes, matched to a terminal theme set of the same name.",
+  "version": "1.0.0",
+  "publisher": "rlawoals0529",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Twilight Comet",
+        "uiTheme": "vs-dark",
+        "path": "./themes/twilight-comet-color-theme.json"
+      },
+      {
+        "label": "Coral Horizon",
+        "uiTheme": "vs-dark",
+        "path": "./themes/coral-horizon-color-theme.json"
+      },
+      {
+        "label": "Starfall Dusk",
+        "uiTheme": "vs-dark",
+        "path": "./themes/starfall-dusk-color-theme.json"
+      },
+      {
+        "label": "Rooftop Dusk",
+        "uiTheme": "vs-dark",
+        "path": "./themes/rooftop-dusk-color-theme.json"
+      },
+      {
+        "label": "Sakura Lake",
+        "uiTheme": "vs",
+        "path": "./themes/sakura-lake-color-theme.json"
+      },
+      {
+        "label": "Rain Lantern",
+        "uiTheme": "vs-dark",
+        "path": "./themes/rain-lantern-color-theme.json"
+      },
+      {
+        "label": "Moonlit Village",
+        "uiTheme": "vs-dark",
+        "path": "./themes/moonlit-village-color-theme.json"
+      },
+      {
+        "label": "Sakura Road",
+        "uiTheme": "vs",
+        "path": "./themes/sakura-road-color-theme.json"
+      },
+      {
+        "label": "Amethyst Yokai",
+        "uiTheme": "vs-dark",
+        "path": "./themes/amethyst-yokai-color-theme.json"
+      },
+      {
+        "label": "Wisteria Alley",
+        "uiTheme": "vs",
+        "path": "./themes/wisteria-alley-color-theme.json"
+      },
+      {
+        "label": "Neko Lantern",
+        "uiTheme": "vs",
+        "path": "./themes/neko-lantern-color-theme.json"
+      },
+      {
+        "label": "Moonlit Skyline",
+        "uiTheme": "vs",
+        "path": "./themes/moonlit-skyline-color-theme.json"
+      },
+      {
+        "label": "Falling Stars",
+        "uiTheme": "vs",
+        "path": "./themes/falling-stars-color-theme.json"
+      },
+      {
+        "label": "Plushie Pink",
+        "uiTheme": "vs",
+        "path": "./themes/plushie-pink-color-theme.json"
+      },
+      {
+        "label": "Cherry Blossom Dusk",
+        "uiTheme": "vs",
+        "path": "./themes/cherry-blossom-dusk-color-theme.json"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rlawoals0529/yozora"
+  },
+  "license": "MIT"
+}
