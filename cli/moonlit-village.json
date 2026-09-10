@@ -2,7 +2,7 @@
   "name": "Moonlit Village",
   "base": "dark",
   "overrides": {
-    "claude": "#cfe0ff",
+    "claude": "#6fa4e8",
     "text": "#eef3fc",
     "inverseText": "#0a1428",
     "inactive": "#5a7096",
@@ -16,11 +16,11 @@
     "warning": "#f5a94f",
     "merged": "#4fae8a",
 
-    "promptBorder": "#cfe0ff",
+    "promptBorder": "#6fa4e8",
     "planMode": "#f5a94f",
     "autoAccept": "#7fc9d1",
     "bashBorder": "#5a7096",
-    "ide": "#e8f0ff",
+    "ide": "#9cc4f5",
     "fastMode": "#ff6b6b",
 
     "diffAdded": "#4fae8a",
@@ -39,12 +39,12 @@
     "rate_limit_fill": "#f5a94f",
     "rate_limit_empty": "#1f3560",
     "briefLabelYou": "#eef3fc",
-    "briefLabelClaude": "#cfe0ff",
+    "briefLabelClaude": "#6fa4e8",
 
-    "claudeShimmer": "#e8f0ff",
+    "claudeShimmer": "#9cc4f5",
     "warningShimmer": "#ffe0a0",
     "permissionShimmer": "#ffe0a0",
-    "promptBorderShimmer": "#e8f0ff",
+    "promptBorderShimmer": "#9cc4f5",
     "inactiveShimmer": "#7d93b8",
     "fastModeShimmer": "#ff9a9a",
 

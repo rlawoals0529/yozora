@@ -53,11 +53,25 @@ function hueOf(hex) {
   return Math.round(((h * 60) + 360) % 360);
 }
 
+/**
+ * How much tint a hue can carry before it looks dirty.
+ *
+ * Warm and cool hues do not take the same saturation at low lightness. A blue at 26% reads
+ * as night; an orange at 26% reads as mud. Warmth peaks around hue 30 and bottoms out around
+ * 210, so the tint is scaled down as a hue approaches orange.
+ */
+function tintCeiling(h) {
+  const warmth = (Math.cos(((h - 30) * Math.PI) / 180) + 1) / 2; // 1 at orange, 0 at teal
+  return 1 - 0.62 * warmth; // orange keeps ~38% of the tint, blue keeps all of it
+}
+
 function surfaces(base, accent) {
   const h = hueOf(accent);
+  const k = tintCeiling(h);
+  const s = (n) => `${(n * k).toFixed(1)}%`;
   return base === "light"
-    ? { bg: `hsl(${h} 34% 97%)`, panel: `hsl(${h} 46% 99.5%)`, raised: `hsl(${h} 30% 94%)` }
-    : { bg: `hsl(${h} 26% 6%)`, panel: `hsl(${h} 22% 10%)`, raised: `hsl(${h} 20% 15%)` };
+    ? { bg: `hsl(${h} ${s(34)} 97%)`, panel: `hsl(${h} ${s(46)} 99.5%)`, raised: `hsl(${h} ${s(30)} 94%)` }
+    : { bg: `hsl(${h} ${s(26)} 6.5%)`, panel: `hsl(${h} ${s(22)} 10.5%)`, raised: `hsl(${h} ${s(20)} 15%)` };
 }
 
 mkdirSync(OUT, { recursive: true });

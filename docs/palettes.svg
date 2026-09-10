@@ -38,10 +38,10 @@
     </g>
     <g>
       <rect x="682" y="124" width="320" height="96" rx="12" fill="#12121a" stroke="#2f4d78" stroke-opacity=".45"/>
-      <circle cx="708" cy="152" r="7" fill="#cfe0ff"/>
+      <circle cx="708" cy="152" r="7" fill="#6fa4e8"/>
       <text x="726" y="157" font-family="system-ui,sans-serif" font-size="14.5" font-weight="600" fill="#eef3fc">Moonlit Village</text>
       <text x="986" y="157" text-anchor="end" font-family="ui-monospace,monospace" font-size="10.5" fill="#5a7096" opacity=".8">dark</text>
-      <rect x="698" y="174" width="24" height="24" rx="6" fill="#cfe0ff"/><rect x="728" y="174" width="24" height="24" rx="6" fill="#eef3fc"/><rect x="758" y="174" width="24" height="24" rx="6" fill="#4fae8a"/><rect x="788" y="174" width="24" height="24" rx="6" fill="#f5a94f"/><rect x="818" y="174" width="24" height="24" rx="6" fill="#ff6b6b"/><rect x="848" y="174" width="24" height="24" rx="6" fill="#7fc9d1"/><rect x="878" y="174" width="24" height="24" rx="6" fill="#f5a94f"/><rect x="908" y="174" width="24" height="24" rx="6" fill="#2f4d78"/>
+      <rect x="698" y="174" width="24" height="24" rx="6" fill="#6fa4e8"/><rect x="728" y="174" width="24" height="24" rx="6" fill="#eef3fc"/><rect x="758" y="174" width="24" height="24" rx="6" fill="#4fae8a"/><rect x="788" y="174" width="24" height="24" rx="6" fill="#f5a94f"/><rect x="818" y="174" width="24" height="24" rx="6" fill="#ff6b6b"/><rect x="848" y="174" width="24" height="24" rx="6" fill="#7fc9d1"/><rect x="878" y="174" width="24" height="24" rx="6" fill="#f5a94f"/><rect x="908" y="174" width="24" height="24" rx="6" fill="#2f4d78"/>
     </g>
     <g>
       <rect x="14" y="234" width="320" height="96" rx="12" fill="#f6f3f7" stroke="#b9c3de" stroke-opacity=".45"/>
