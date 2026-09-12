@@ -36,6 +36,14 @@ jobs:
           git diff --exit-code css/ \
             || { echo "css/ is stale. Run: node scripts/css.mjs"; exit 1; }
 
+      # Self-test first. It plants a palette that must fail, so a run that reports "all
+      # clear" has already proved it is capable of reporting anything else.
+      - name: The contrast check can fail
+        run: node scripts/check-contrast.mjs --self-test
+
+      - name: Every palette is legible on its own surfaces
+        run: node scripts/check-contrast.mjs
+
       - name: The swatch sheet matches the palettes
         run: |
           node scripts/swatches.mjs

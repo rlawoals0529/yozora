@@ -75,9 +75,9 @@
       "label": "Cherry Blossom Dusk",
       "accent": "#c2477a",
       "accent2": "#6f7fc2",
-      "ok": "#3f8f6a",
-      "warn": "#d19a4a",
-      "err": "#c2493b",
+      "ok": "#357859",
+      "warn": "#8f6424",
+      "err": "#ba4639",
       "scheme": "light"
     },
     {
@@ -85,9 +85,9 @@
       "label": "Falling Stars",
       "accent": "#6f7fd6",
       "accent2": "#c26bab",
-      "ok": "#3f8f6a",
-      "warn": "#d19a4a",
-      "err": "#c2493b",
+      "ok": "#357859",
+      "warn": "#8f6324",
+      "err": "#b94538",
       "scheme": "light"
     },
     {
@@ -95,9 +95,9 @@
       "label": "Moonlit Skyline",
       "accent": "#e0a13f",
       "accent2": "#c2699e",
-      "ok": "#4a9f6e",
-      "warn": "#e0a13f",
-      "err": "#c2493b",
+      "ok": "#397a55",
+      "warn": "#946418",
+      "err": "#bb4639",
       "scheme": "light"
     },
     {
@@ -105,9 +105,9 @@
       "label": "Neko Lantern",
       "accent": "#d9663f",
       "accent2": "#3f7fc7",
-      "ok": "#3f8f6a",
-      "warn": "#d19a4a",
-      "err": "#c2493b",
+      "ok": "#35795a",
+      "warn": "#906425",
+      "err": "#bb4639",
       "scheme": "light"
     },
     {
@@ -115,9 +115,9 @@
       "label": "Plushie Pink",
       "accent": "#d94f9e",
       "accent2": "#6f8fd6",
-      "ok": "#4a9f6e",
-      "warn": "#d19a4a",
-      "err": "#c2493b",
+      "ok": "#387954",
+      "warn": "#8f6424",
+      "err": "#ba4639",
       "scheme": "light"
     },
     {
@@ -125,8 +125,8 @@
       "label": "Sakura Lake",
       "accent": "#e0932c",
       "accent2": "#1c7a91",
-      "ok": "#3f8f5c",
-      "warn": "#e0932c",
+      "ok": "#367a4f",
+      "warn": "#996117",
       "err": "#c23b3b",
       "scheme": "light"
     },
@@ -135,8 +135,8 @@
       "label": "Sakura Road",
       "accent": "#e0559c",
       "accent2": "#2a9a9a",
-      "ok": "#2f8f52",
-      "warn": "#b8802a",
+      "ok": "#297b47",
+      "warn": "#906421",
       "err": "#c23b3b",
       "scheme": "light"
     },
@@ -145,9 +145,9 @@
       "label": "Wisteria Alley",
       "accent": "#8b6fd1",
       "accent2": "#3f9ecf",
-      "ok": "#3f8f6a",
-      "warn": "#d19a4a",
-      "err": "#c2493b",
+      "ok": "#357859",
+      "warn": "#8f6324",
+      "err": "#b94538",
       "scheme": "light"
     }
   ],

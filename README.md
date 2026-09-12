@@ -58,6 +58,27 @@ reader's own preference. A page that only looks right in one theme is not finish
 `css/base.css` is the structural layer: spacing, hit areas, text wrapping, tabular figures.
 It sets no colours at all, so it cannot fight the palette beside it.
 
+### Three tokens exist only in the CSS
+
+A terminal palette names `inactive` against a background it does not own. A web page has a
+background, so the same colour can be measured against it - and measured, most of these did
+not pass. `scripts/css.mjs` corrects every text colour against `--bg` and `--panel` until it
+clears 4.5:1, by lightness alone so the hue survives, and adds three tokens the source
+palettes have no reason to carry:
+
+| Token | For | Held to |
+| --- | --- | --- |
+| `--accent-text` | a word or a focus ring drawn in the accent | 4.5:1 on `--bg` and `--panel` |
+| `--on-accent` | the label inside a filled accent button | 4.5:1 on `--accent` |
+| `--edge-strong` | a border that IS the control, such as an input underline | 3:1 on `--bg` |
+
+`--accent` itself is never corrected. It is the colour the palette is recognised by, and
+repainting the brand to satisfy a caption is the wrong trade; the readable variants sit
+beside it instead. `--edge` stays a hairline for separators, which are decoration.
+
+`scripts/check-contrast.mjs` measures the generated files and fails on any shortfall.
+`--self-test` plants a palette that must fail, so a green run has proved it can go red.
+
 ```css
 @import "./theme/palette.css";      /* one pair */
 @import "./theme/base.css";         /* structure */

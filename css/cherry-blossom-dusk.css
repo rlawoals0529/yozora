@@ -6,12 +6,15 @@
   --accent: #c2477a;
   --accent-2: #6f7fc2;
   --fg: #2a1f38;
-  --dim: #a68fae;
+  --dim: #7e6288;
   --edge: #d9bcd9;
-  --ok: #3f8f6a;
-  --warn: #d19a4a;
-  --err: #c2493b;
-  --caution: #d19a4a;
+  --ok: #357859;
+  --warn: #8f6424;
+  --err: #ba4639;
+  --caution: #8f6424;
+  --accent-text: #ba3e71;
+  --on-accent: #fbfafa;
+  --edge-strong: #b57cb5;
   --radius: 12px;
   color-scheme: light;
 }
