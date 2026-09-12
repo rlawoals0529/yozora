@@ -64,6 +64,14 @@ const PICKER_CSS = "palette.css";
 /* The picker's own behaviour, tested where it is defined. Named for the component rather than
    for the subject, so a project's existing palette.spec.ts is not quietly replaced. */
 const PICKER_SPEC = "palette.spec.ts";
+/**
+ * How the spec reaches the picker on THIS page.
+ *
+ * The one file in the set a project is meant to edit, so it is written once and never
+ * overwritten: most pages put the picker behind its own disclosure, and a page that keeps it
+ * in a settings tab replaces this and the vendored spec keeps working unchanged.
+ */
+const PICKER_SEAM = "palette-open.ts";
 
 /** The text reveals. Opt in separately: nothing uses them yet, and a copy nothing imports
  *  is dead code that still has to be kept in step. */
@@ -225,6 +233,9 @@ if (opts.picker) {
     copy(`js/${PICKER_UI}`, join(lib(target), PICKER_UI), "js");
     copy(`css/${PICKER_CSS}`, join(theme, PICKER_CSS), "css");
     copy(`js/${PICKER_SPEC}`, join(target, "e2e", "palette-picker.spec.ts"), "js");
+    const seam = join(target, "e2e", PICKER_SEAM);
+    if (existsSync(seam)) console.log(`  ${PICKER_SEAM} left as it is; it is yours to edit`);
+    else copy(`js/${PICKER_SEAM}`, seam, "js");
   }
   console.log(`done. ${manifest.filter((m) => m.scheme === "dark").length} dark, ${manifest.filter((m) => m.scheme === "light").length} light.`);
   process.exit(0);
