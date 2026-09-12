@@ -53,6 +53,15 @@ const JS = ["motion.tsx", "motion.test.ts"];
 const PICKER_JS = ["theme.ts", "theme.test.ts"];
 
 /**
+ * Arrow keys and one tab stop, for a picker built without a framework.
+ *
+ * The React component has this built in. Two pages here are plain TypeScript and cannot use
+ * it, and the behaviour is the part worth sharing: how a page paints its swatches is its own
+ * business, but fifteen tab stops to get past a preference is wrong everywhere.
+ */
+const PICKER_KEYS = ["palette-keys.ts", "palette-keys.test.ts"];
+
+/**
  * The picker itself, for a React project.
  *
  * It used to be a file each project kept its own copy of, and five copies had drifted to
@@ -86,13 +95,14 @@ const REVEAL = ["reveal.ts", "reveal.test.ts"];
 const PROBE = "contrast-probe.ts";
 
 const options = (argv) => {
-  const out = { target: null, palette: null, type: null, js: false, reveal: false, list: false, palettesDir: null, picker: false, probe: false, pickerUi: false };
+  const out = { target: null, palette: null, type: null, js: false, reveal: false, list: false, palettesDir: null, picker: false, probe: false, pickerUi: false, pickerKeys: false };
   const rest = [];
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === "--js") out.js = true;
     else if (a === "--probe") out.probe = true;
     else if (a === "--picker-ui") out.pickerUi = true;
+    else if (a === "--picker-keys") out.pickerKeys = true;
     else if (a === "--picker") out.picker = true;
     else if (a === "--reveal") out.reveal = true;
     else if (a === "--list") out.list = true;
@@ -229,6 +239,7 @@ if (opts.picker) {
   for (const fl of PICKER_JS) copy(`js/${fl}`, join(lib(target), fl), "js");
   if (opts.js) for (const fl of JS) copy(`js/${fl}`, join(lib(target), fl), "js");
   if (opts.probe) copy(`js/${PROBE}`, join(target, "e2e", PROBE), "js");
+  if (opts.pickerKeys) for (const fl of PICKER_KEYS) copy(`js/${fl}`, join(lib(target), fl), "js");
   if (opts.pickerUi) {
     copy(`js/${PICKER_UI}`, join(lib(target), PICKER_UI), "js");
     copy(`css/${PICKER_CSS}`, join(theme, PICKER_CSS), "css");
