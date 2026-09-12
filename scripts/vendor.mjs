@@ -47,6 +47,9 @@ const SHARED_CSS = ["base.css", "layout-flat.css", "motion.css", "texture.css"];
 /** The React helpers. Opt in, because a project that renders no React does not want them. */
 const JS = ["motion.tsx", "motion.test.ts"];
 
+/** The palette switcher. Vendored with --picker, since it is what drives the picker. */
+const PICKER_JS = ["theme.ts", "theme.test.ts"];
+
 /** The text reveals. Opt in separately: nothing uses them yet, and a copy nothing imports
  *  is dead code that still has to be kept in step. */
 const REVEAL = ["reveal.ts", "reveal.test.ts"];
@@ -197,6 +200,7 @@ if (opts.picker) {
   console.log(`  manifest  -> ${join(theme, "palettes.json")}`);
   copy(`css/type-${opts.type}.css`, join(theme, "type.css"), "css");
   for (const fl of SHARED_CSS) copy(`css/${fl}`, join(theme, fl), "css");
+  for (const fl of PICKER_JS) copy(`js/${fl}`, join(lib(target), fl), "js");
   if (opts.js) for (const fl of JS) copy(`js/${fl}`, join(lib(target), fl), "js");
   console.log(`done. ${manifest.filter((m) => m.scheme === "dark").length} dark, ${manifest.filter((m) => m.scheme === "light").length} light.`);
   process.exit(0);
