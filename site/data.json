@@ -1,0 +1,192 @@
+{
+  "palettes": [
+    {
+      "id": "amethyst-yokai",
+      "label": "Amethyst Yokai",
+      "accent": "#d1364a",
+      "accent2": "#c9bfe0",
+      "ok": "#6fcf97",
+      "warn": "#e08a4d",
+      "err": "#ff5d6b",
+      "scheme": "dark"
+    },
+    {
+      "id": "coral-horizon",
+      "label": "Coral Horizon",
+      "accent": "#ff8f6b",
+      "accent2": "#7fd0d9",
+      "ok": "#5fd9a0",
+      "warn": "#ffb56b",
+      "err": "#ff6b6b",
+      "scheme": "dark"
+    },
+    {
+      "id": "moonlit-village",
+      "label": "Moonlit Village",
+      "accent": "#6fa4e8",
+      "accent2": "#7fc9d1",
+      "ok": "#4fae8a",
+      "warn": "#f5a94f",
+      "err": "#ff6b6b",
+      "scheme": "dark"
+    },
+    {
+      "id": "rain-lantern",
+      "label": "Rain Lantern",
+      "accent": "#ff7a4d",
+      "accent2": "#3fb8b0",
+      "ok": "#6fcf97",
+      "warn": "#ffb877",
+      "err": "#ff5d6b",
+      "scheme": "dark"
+    },
+    {
+      "id": "rooftop-dusk",
+      "label": "Rooftop Dusk",
+      "accent": "#f2789e",
+      "accent2": "#5fa0b0",
+      "ok": "#6fcf97",
+      "warn": "#ffb066",
+      "err": "#ff6b6b",
+      "scheme": "dark"
+    },
+    {
+      "id": "starfall-dusk",
+      "label": "Starfall Dusk",
+      "accent": "#ff5f78",
+      "accent2": "#cfd6ff",
+      "ok": "#6fe0a8",
+      "warn": "#ffb15c",
+      "err": "#ff4d5e",
+      "scheme": "dark"
+    },
+    {
+      "id": "twilight-comet",
+      "label": "Twilight Comet",
+      "accent": "#8b7cf6",
+      "accent2": "#4fd8c4",
+      "ok": "#4fd8c4",
+      "warn": "#f5b878",
+      "err": "#ff5d73",
+      "scheme": "dark"
+    },
+    {
+      "id": "cherry-blossom-dusk",
+      "label": "Cherry Blossom Dusk",
+      "accent": "#c2477a",
+      "accent2": "#6f7fc2",
+      "ok": "#3f8f6a",
+      "warn": "#d19a4a",
+      "err": "#c2493b",
+      "scheme": "light"
+    },
+    {
+      "id": "falling-stars",
+      "label": "Falling Stars",
+      "accent": "#6f7fd6",
+      "accent2": "#c26bab",
+      "ok": "#3f8f6a",
+      "warn": "#d19a4a",
+      "err": "#c2493b",
+      "scheme": "light"
+    },
+    {
+      "id": "moonlit-skyline",
+      "label": "Moonlit Skyline",
+      "accent": "#e0a13f",
+      "accent2": "#c2699e",
+      "ok": "#4a9f6e",
+      "warn": "#e0a13f",
+      "err": "#c2493b",
+      "scheme": "light"
+    },
+    {
+      "id": "neko-lantern",
+      "label": "Neko Lantern",
+      "accent": "#d9663f",
+      "accent2": "#3f7fc7",
+      "ok": "#3f8f6a",
+      "warn": "#d19a4a",
+      "err": "#c2493b",
+      "scheme": "light"
+    },
+    {
+      "id": "plushie-pink",
+      "label": "Plushie Pink",
+      "accent": "#d94f9e",
+      "accent2": "#6f8fd6",
+      "ok": "#4a9f6e",
+      "warn": "#d19a4a",
+      "err": "#c2493b",
+      "scheme": "light"
+    },
+    {
+      "id": "sakura-lake",
+      "label": "Sakura Lake",
+      "accent": "#e0932c",
+      "accent2": "#1c7a91",
+      "ok": "#3f8f5c",
+      "warn": "#e0932c",
+      "err": "#c23b3b",
+      "scheme": "light"
+    },
+    {
+      "id": "sakura-road",
+      "label": "Sakura Road",
+      "accent": "#e0559c",
+      "accent2": "#2a9a9a",
+      "ok": "#2f8f52",
+      "warn": "#b8802a",
+      "err": "#c23b3b",
+      "scheme": "light"
+    },
+    {
+      "id": "wisteria-alley",
+      "label": "Wisteria Alley",
+      "accent": "#8b6fd1",
+      "accent2": "#3f9ecf",
+      "ok": "#3f8f6a",
+      "warn": "#d19a4a",
+      "err": "#c2493b",
+      "scheme": "light"
+    }
+  ],
+  "pairings": [
+    {
+      "id": "ink-study",
+      "title": "Ink Study - Fraunces + Chivo.",
+      "why": "For something that teaches. Fraunces has a wonk axis and real optical sizing, so at display size it looks drawn rather than generated, and that is the whole reason to use it: a page explaining how something works should not look like it was assembled.",
+      "load": "https://fonts.googleapis.com/css2?family=Chivo:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap",
+      "display": "Fraunces",
+      "body": "Chivo",
+      "mono": "JetBrains Mono"
+    },
+    {
+      "id": "neon-sign",
+      "title": "Neon Sign - Syne + Manrope.",
+      "why": "Syne is wide, high-contrast and slightly strange, which is exactly what a heading is for: it has to be recognisable at a glance and it is read once. Manrope carries the body without imitating it.",
+      "load": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Syne:wght@600;700;800&display=swap",
+      "display": "Syne",
+      "body": "Manrope",
+      "mono": "JetBrains Mono"
+    },
+    {
+      "id": "night-terminal",
+      "title": "Night Terminal - Archivo + JetBrains Mono.",
+      "why": "For a tool whose screen is mostly numbers. Archivo is a grotesque with even colour and unambiguous figures; JetBrains Mono carries every quantity, so columns line up and a changing value does not shift its neighbours sideways.",
+      "load": "https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
+      "display": "Archivo",
+      "body": "Archivo",
+      "mono": "JetBrains Mono"
+    },
+    {
+      "id": "paper-lantern",
+      "title": "Paper Lantern - Instrument Serif + Instrument Sans.",
+      "why": "A serif headline over a sans body. This is the pairing to reach for first, because all-sans is the single loudest tell that nobody chose the type: a page where the heading and the paragraph are the same face at different sizes reads as a default. Two families give contrast that size alone cannot.",
+      "load": "https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap",
+      "display": "Instrument Serif",
+      "body": "Instrument Sans",
+      "mono": "JetBrains Mono"
+    }
+  ]
+}

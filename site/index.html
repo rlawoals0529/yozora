@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en" data-theme="rain-lantern">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>yozora - fifteen nocturnal palettes, and the system around them</title>
+<meta name="description" content="Fifteen colour palettes for VS Code, terminals and the web, with a type scale, texture and motion rules. Every specimen on this page is rendered in the palette you pick.">
+<meta name="color-scheme" content="dark light">
+<link rel="stylesheet" href="./theme/palettes.css">
+<link rel="stylesheet" href="./theme/base.css">
+<link rel="stylesheet" href="./theme/texture.css">
+<link rel="stylesheet" href="./theme/motion.css">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body class="grain">
+<a class="skip" href="#palettes">Skip to the palettes</a>
+
+<div class="wrap">
+  <header class="hero">
+    <p class="kicker">yozora · 夜空</p>
+    <h1>Fifteen palettes,<br>and the rules <em>around</em> them.</h1>
+    <p class="lede">
+      Colour was the easy half. This is the type scale, the texture and the motion as well, as
+      one small system. <strong>Everything on this page is drawn in the palette you pick</strong>,
+      so what you see is what a page using it looks like, not a swatch of it.
+    </p>
+    <div class="hero-links">
+      <a class="btn primary" href="#palettes">Pick one</a>
+      <a class="btn" href="https://github.com/rlawoals0529/yozora">Source</a>
+      <a class="btn" href="#install">Install</a>
+    </div>
+  </header>
+
+  <main id="palettes" tabindex="-1">
+    <section>
+      <div class="section-head">
+        <h2>The palettes</h2>
+        <p id="palette-count"></p>
+      </div>
+      <div class="swatches" id="swatch-grid"></div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>What it looks like</h2>
+        <p>The same components, in whichever palette is on.</p>
+      </div>
+
+      <div class="specimen">
+        <div class="panel">
+          <h3>A panel</h3>
+          <p class="note">Body copy in <code>--fg</code>, and a note in <code>--dim</code> under it.</p>
+          <div class="row">
+            <button class="btn primary" type="button">Primary</button>
+            <button class="btn" type="button">Secondary</button>
+          </div>
+          <div class="row">
+            <span class="tag ok">ok</span>
+            <span class="tag warn">warn</span>
+            <span class="tag err">error</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>A table</h3>
+          <table>
+            <thead><tr><th>Reading</th><th class="num">Value</th></tr></thead>
+            <tbody>
+              <tr><td>Fresh</td><td class="num">18.4</td></tr>
+              <tr><td>An hour old</td><td class="num">17.9</td></tr>
+              <tr><td>Unavailable</td><td class="num">--</td></tr>
+            </tbody>
+          </table>
+          <p class="note">
+            Figures are tabular, so a changing value does not shift its neighbours sideways.
+          </p>
+        </div>
+
+        <div class="panel">
+          <h3>Code</h3>
+          <pre><code>const wait = Math.min(cap, base * 2 ** attempt);
+if (!Number.isFinite(wait)) return null;  // unknown, not zero</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>Type pairings</h2>
+        <p>Four, each for a different kind of page. Load one, not all of them.</p>
+      </div>
+      <div class="pairings" id="pairings"></div>
+    </section>
+
+    <section id="install">
+      <div class="section-head">
+        <h2>Into a project</h2>
+        <p>No package, no git dependency. A copy, stamped with where it came from.</p>
+      </div>
+      <div class="panel">
+        <pre><code># one palette, chosen now
+node scripts/vendor.mjs ../your-app --palette rain-lantern --type ink-study
+
+# all fifteen, switchable at runtime, with the store that switches them
+node scripts/vendor.mjs ../your-app --picker</code></pre>
+        <p class="note">
+          <code>--picker</code> writes one stylesheet with every palette scoped to
+          <code>[data-theme]</code>, a manifest for the picker to draw, and a framework-free
+          store that sets <code>color-scheme</code> alongside the attribute. Without that last
+          part the browser keeps painting scrollbars for the other scheme.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>Part of <a href="https://rlawoals0529.github.io">rlawoals0529.github.io</a></span>
+    <span>MIT</span>
+  </footer>
+</div>
+
+<script type="module" src="./main.js"></script>
+</body>
+</html>

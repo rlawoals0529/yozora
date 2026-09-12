@@ -1,0 +1,124 @@
+/* The specimen page. Every value here is a token from the palette being shown, which is the
+   only way a page like this can be honest: a hardcoded hex would look right in one palette and
+   wrong in fourteen, and this page's whole job is to show all fifteen. */
+
+:root { --edge-w: 2.5px; --lift: 5px; --tap: 44px; }
+*, *::before, *::after { box-sizing: border-box; }
+body { font-family: var(--font-body, system-ui, sans-serif); overflow-x: hidden; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+.skip {
+  position: absolute; left: 1rem; top: 1rem; z-index: 50;
+  background: var(--accent); color: var(--bg);
+  border: var(--edge-w) solid var(--edge); border-radius: 10px;
+  box-shadow: var(--lift) var(--lift) 0 0 var(--edge);
+  padding: .7rem 1.1rem; font-weight: 700; transform: translateY(-200%);
+  transition: transform 140ms ease-out;
+}
+.skip:focus { transform: translateY(0); }
+:where(a, button, [tabindex]):focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+main:focus { outline: none; }
+
+.wrap { max-width: 72rem; margin: 0 auto; padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2.5rem) 5rem; }
+
+/* ---- Hero -------------------------------------------------------------------------------- */
+
+.hero { margin-bottom: clamp(2.5rem, 6vw, 4rem); }
+.kicker { font: 700 .78rem/1 var(--font-mono, monospace); letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin: 0 0 1rem; }
+.hero h1 {
+  font-family: var(--font-display, serif); font-weight: var(--display-weight, 700);
+  letter-spacing: var(--display-tracking, -.6px); line-height: .95;
+  font-size: clamp(2.4rem, 8.5vw, 5rem); color: var(--fg); margin: 0; text-wrap: balance;
+}
+/* The accent sits under the word, not in it. As text it drops under 3:1 on the lighter
+   palettes; as a bar nothing has to be read off it. */
+.hero h1 em { font-style: normal; position: relative; white-space: nowrap; }
+.hero h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: .06em; height: .13em; background: var(--accent); border-radius: 999px; }
+.lede { max-width: 42rem; margin-top: 1.2rem; font-size: clamp(1rem, 2.2vw, 1.12rem); color: var(--fg); }
+.lede strong { font-weight: 650; }
+.hero-links { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.6rem; }
+
+/* ---- Chunky control ---------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  min-height: var(--tap); padding: .6rem 1.1rem;
+  background: var(--panel); color: var(--fg);
+  border: var(--edge-w) solid var(--edge); border-radius: 12px;
+  box-shadow: var(--lift) var(--lift) 0 0 var(--edge);
+  font: inherit; font-weight: 650; cursor: pointer; text-decoration: none;
+  transition: transform 90ms ease, box-shadow 90ms ease, background-color 160ms ease;
+}
+.btn:hover { background: var(--raised); }
+.btn:active { transform: translate(var(--lift), var(--lift)); box-shadow: 0 0 0 0 var(--edge); }
+.btn.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.btn.primary:hover { background: color-mix(in srgb, var(--accent) 86%, var(--fg)); }
+
+/* ---- Sections ---------------------------------------------------------------------------- */
+
+section { margin-top: clamp(2.5rem, 6vw, 4rem); }
+.section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+.section-head h2 { font-family: var(--font-display, serif); font-size: clamp(1.2rem, 3vw, 1.55rem); color: var(--fg); text-transform: none; letter-spacing: var(--display-tracking, -.4px); font-weight: 700; margin: 0; }
+.section-head p { color: var(--dim); font-size: .9rem; margin: 0; }
+
+/* ---- Swatches ---------------------------------------------------------------------------- */
+
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr)); gap: .8rem; }
+
+/* Each card paints itself in the palette it selects, so this grid is fifteen real previews
+   rather than fifteen chips of the colour you are already in. */
+.swatch {
+  display: grid; gap: .55rem; padding: .85rem .9rem;
+  background: var(--panel); color: var(--fg);
+  border: var(--edge-w) solid var(--edge); border-radius: 14px;
+  box-shadow: 3px 3px 0 0 var(--edge);
+  font: inherit; text-align: left; cursor: pointer;
+  transition: transform 110ms ease, box-shadow 110ms ease;
+}
+.swatch:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 0 var(--accent); }
+.swatch[aria-pressed="true"] { border-color: var(--accent); box-shadow: 5px 5px 0 0 var(--accent); }
+.swatch-name { font: 650 .95rem/1.2 var(--font-body, sans-serif); }
+.swatch-scheme { font: 600 .68rem/1 var(--font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
+.bars { display: flex; gap: .3rem; }
+.bars i { height: 1.5rem; flex: 1; border-radius: 5px; border: 1.5px solid var(--edge); }
+
+/* ---- Specimen ---------------------------------------------------------------------------- */
+
+.specimen { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr)); gap: 1rem; align-items: start; }
+.panel {
+  background: var(--panel); border: var(--edge-w) solid var(--edge); border-radius: 14px;
+  box-shadow: var(--lift) var(--lift) 0 0 var(--edge); padding: 1.1rem 1.2rem;
+}
+.panel h3 { font-family: var(--font-display, serif); font-size: 1.02rem; color: var(--fg); margin: 0 0 .6rem; text-transform: none; letter-spacing: normal; }
+.panel .note { color: var(--dim); font-size: .87rem; margin: .7rem 0 0; }
+.panel code { font: .86em var(--font-mono, monospace); background: var(--bg); border: 1px solid var(--edge); border-radius: 4px; padding: .06em .34em; }
+.panel pre { background: var(--bg); border: 1px solid var(--edge); border-radius: 8px; padding: .7rem .8rem; overflow-x: auto; margin: 0; }
+.panel pre code { background: none; border: 0; padding: 0; font-size: .8rem; line-height: 1.6; }
+.row { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .8rem; }
+
+.tag { font: 700 .7rem/1 var(--font-mono, monospace); letter-spacing: .06em; text-transform: uppercase; padding: .34rem .55rem; border-radius: 999px; border: 1.5px solid currentColor; }
+.tag.ok { color: var(--ok); } .tag.warn { color: var(--warn); } .tag.err { color: var(--err); }
+
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+th, td { text-align: left; padding: .4rem .2rem; border-bottom: 1px solid var(--edge); }
+th { color: var(--dim); font: 700 .68rem/1 var(--font-mono, monospace); letter-spacing: .08em; text-transform: uppercase; }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ---- Pairings ---------------------------------------------------------------------------- */
+
+.pairings { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr)); gap: 1rem; }
+.pairing { background: var(--panel); border: var(--edge-w) solid var(--edge); border-radius: 14px; box-shadow: 3px 3px 0 0 var(--edge); padding: 1rem 1.1rem; }
+.pairing h3 { font-size: 1rem; color: var(--fg); margin: 0 0 .2rem; text-transform: none; letter-spacing: normal; }
+.pairing .faces { font: .78rem/1.5 var(--font-mono, monospace); color: var(--accent); margin: .3rem 0 .6rem; }
+.pairing p { color: var(--dim); font-size: .85rem; margin: 0; }
+
+/* ---- Foot -------------------------------------------------------------------------------- */
+
+.foot { margin-top: clamp(3rem, 7vw, 5rem); padding-top: 1.4rem; border-top: var(--edge-w) solid var(--edge); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; color: var(--dim); font-size: .87rem; }
+.foot a { color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .swatch, .btn { transition: none; }
+  .swatch:hover { transform: none; }
+}

@@ -1,0 +1,26 @@
+name: Pages
+on:
+  push: { branches: [main] }
+  workflow_dispatch:
+permissions: { contents: read, pages: write, id-token: write }
+concurrency: { group: pages, cancel-in-progress: false }
+
+jobs:
+  deploy:
+    if: github.event_name == 'workflow_dispatch' || github.event.repository.private == false
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      # The page is generated from css/, so a palette edited without re-running this would
+      # otherwise deploy a specimen that disagrees with the system it is showing.
+      - run: node scripts/site.mjs
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: site }
+      - id: deploy
+        uses: actions/deploy-pages@v4
