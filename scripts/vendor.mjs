@@ -158,8 +158,11 @@ if (opts.palettesDir) {
  * the palette or the browser keeps painting scrollbars and form controls for the other one.
  */
 if (opts.picker) {
-  if (!opts.type) die(`--type is required with --picker. One of: ${types.join(", ")}`);
-  if (!types.includes(opts.type)) die(`unknown type "${opts.type}". One of: ${types.join(", ")}`);
+  // --type is OPTIONAL here, unlike the single-palette mode, and that is deliberate. Adding a
+  // picker to an existing project should not silently restyle its text: decoder self-hosts the
+  // two faces its pairing names, so switching the pairing left it asking for fonts it does not
+  // have. Omit it and whatever type.css is already there is left alone.
+  if (opts.type && !types.includes(opts.type)) die(`unknown type "${opts.type}". One of: ${types.join(", ")}`);
 
   const theme = join(target, "src", "theme");
   const found = singles();
@@ -198,7 +201,8 @@ if (opts.picker) {
   );
   console.log(`  css/*.css -> ${join(theme, "palettes.css")} (${found.length} palettes)`);
   console.log(`  manifest  -> ${join(theme, "palettes.json")}`);
-  copy(`css/type-${opts.type}.css`, join(theme, "type.css"), "css");
+  if (opts.type) copy(`css/type-${opts.type}.css`, join(theme, "type.css"), "css");
+  else console.log("  type.css left as it is; pass --type to change the pairing");
   for (const fl of SHARED_CSS) copy(`css/${fl}`, join(theme, fl), "css");
   for (const fl of PICKER_JS) copy(`js/${fl}`, join(lib(target), fl), "js");
   if (opts.js) for (const fl of JS) copy(`js/${fl}`, join(lib(target), fl), "js");
