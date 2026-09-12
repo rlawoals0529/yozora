@@ -82,6 +82,17 @@ beside it instead. `--edge` stays a hairline for separators, which are decoratio
 `scripts/check-contrast.mjs` measures the generated files and fails on any shortfall.
 `--self-test` plants a palette that must fail, so a green run has proved it can go red.
 
+### The picker
+
+`js/palette.tsx` and `css/palette.css` are the palette picker itself, for a React project.
+Vendor them with `--picker-ui`, render `<Palette themes={manifest} storageKey="app:theme" />`,
+and delete the copy the project was keeping.
+
+Each option paints itself in the palette it offers - the page ground, a panel on it, the ink
+and both accents - so fifteen themes are tellable apart by looking. The options are a radio
+group with one tab stop: the arrow keys move through them and apply each one to the page as
+you pass it, and Escape puts back the one you arrived with.
+
 That check can only say the tokens are fine. What actually fails is where they land: a
 `--dim` that clears `--bg` sitting on a chip painted `--raised`. `js/contrast-probe.ts` is
 the other half, and it runs in a browser: vendor it with `--probe` and call `probeContrast`

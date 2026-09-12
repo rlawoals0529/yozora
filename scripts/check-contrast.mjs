@@ -14,10 +14,11 @@
  *   node scripts/check-contrast.mjs              measure css/ and fail on any shortfall
  *   node scripts/check-contrast.mjs --self-test  prove the measurement can fail
  */
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { contrast, toRgb } from "./colour.mjs";
 import { TEXT_MIN, UI_MIN } from "./contrast-targets.mjs";
+import { paletteFiles } from "./palettes.mjs";
 
 const DIR = "css";
 
@@ -113,8 +114,9 @@ function selfTest() {
 
 if (process.argv.includes("--self-test")) selfTest();
 
-const files = readdirSync(DIR).filter((f) => f.endsWith(".css") && !f.startsWith("pair-") && !f.startsWith("type-"));
-const palettes = files.filter((f) => !["base.css", "layout-flat.css", "motion.css", "texture.css"].includes(f));
+// What counts as a palette lives in scripts/palettes.mjs. Listing the exceptions here meant
+// that adding a stylesheet for the picker put a sixteenth "palette" into the report.
+const palettes = paletteFiles(DIR, { singles: true }).map((name) => `${name}.css`);
 
 // An empty run is the failure mode a threshold check cannot report on its own.
 if (palettes.length < 10) {

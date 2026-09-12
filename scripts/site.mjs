@@ -8,10 +8,16 @@
  * failure this repository keeps writing tooling to avoid.
  */
 import { copyFileSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { paletteFiles } from "./palettes.mjs";
 
+/** The stylesheets the specimen page itself loads. A list of what it needs, not of what a
+ *  palette is not - which is the distinction that made this the same list twice. */
 const SHARED = ["base.css", "layout-flat.css", "motion.css", "texture.css"];
 const files = readdirSync("css").filter((f) => f.endsWith(".css"));
-const singles = files.filter((f) => !SHARED.includes(f) && !f.startsWith("pair-") && !f.startsWith("type-"));
+// What counts as a palette lives in scripts/palettes.mjs. By elimination it was every file
+// that is not a pair, a type pairing, or one of a listed four - which stopped being true the
+// moment css/ gained a stylesheet for the picker.
+const singles = paletteFiles("css", { singles: true }).map((name) => `${name}.css`);
 const types = files.filter((f) => f.startsWith("type-"));
 
 if (singles.length === 0) {

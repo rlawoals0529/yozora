@@ -39,6 +39,7 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { paletteFiles } from "./palettes.mjs";
 
 const HERE = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -50,6 +51,19 @@ const JS = ["motion.tsx", "motion.test.ts"];
 
 /** The palette switcher. Vendored with --picker, since it is what drives the picker. */
 const PICKER_JS = ["theme.ts", "theme.test.ts"];
+
+/**
+ * The picker itself, for a React project.
+ *
+ * It used to be a file each project kept its own copy of, and five copies had drifted to
+ * differing by one comment and a storage key - which is to say a fix to any of them reached
+ * one page. Opt in, because a project that renders no React cannot use it.
+ */
+const PICKER_UI = "palette.tsx";
+const PICKER_CSS = "palette.css";
+/* The picker's own behaviour, tested where it is defined. Named for the component rather than
+   for the subject, so a project's existing palette.spec.ts is not quietly replaced. */
+const PICKER_SPEC = "palette.spec.ts";
 
 /** The text reveals. Opt in separately: nothing uses them yet, and a copy nothing imports
  *  is dead code that still has to be kept in step. */
@@ -64,12 +78,13 @@ const REVEAL = ["reveal.ts", "reveal.test.ts"];
 const PROBE = "contrast-probe.ts";
 
 const options = (argv) => {
-  const out = { target: null, palette: null, type: null, js: false, reveal: false, list: false, palettesDir: null, picker: false, probe: false };
+  const out = { target: null, palette: null, type: null, js: false, reveal: false, list: false, palettesDir: null, picker: false, probe: false, pickerUi: false };
   const rest = [];
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === "--js") out.js = true;
     else if (a === "--probe") out.probe = true;
+    else if (a === "--picker-ui") out.pickerUi = true;
     else if (a === "--picker") out.picker = true;
     else if (a === "--reveal") out.reveal = true;
     else if (a === "--list") out.list = true;
@@ -113,19 +128,8 @@ function copy(source, dest, kind) {
   console.log(`  ${source} -> ${dest}`);
 }
 
-/**
- * The single-scheme palettes, by elimination rather than by a hand-kept list.
- *
- * A list here would go stale the moment a palette is added, and the failure would be a
- * palette that exists and cannot be picked, which nobody notices. Everything in css/ is a
- * palette unless it is one of the shared files, a pair, or a type pairing.
- */
-const singles = () =>
-  readdirSync(join(HERE, "css"))
-    .filter((f) => f.endsWith(".css"))
-    .filter((f) => !SHARED_CSS.includes(f) && !f.startsWith("pair-") && !f.startsWith("type-"))
-    .map((f) => f.slice(0, -".css".length))
-    .sort();
+/** The single-scheme palettes. What counts as one lives in scripts/palettes.mjs. */
+const singles = () => paletteFiles(join(HERE, "css"), { singles: true });
 
 const lib = (target) => join(target, "src", "lib");
 
@@ -217,6 +221,11 @@ if (opts.picker) {
   for (const fl of PICKER_JS) copy(`js/${fl}`, join(lib(target), fl), "js");
   if (opts.js) for (const fl of JS) copy(`js/${fl}`, join(lib(target), fl), "js");
   if (opts.probe) copy(`js/${PROBE}`, join(target, "e2e", PROBE), "js");
+  if (opts.pickerUi) {
+    copy(`js/${PICKER_UI}`, join(lib(target), PICKER_UI), "js");
+    copy(`css/${PICKER_CSS}`, join(theme, PICKER_CSS), "css");
+    copy(`js/${PICKER_SPEC}`, join(target, "e2e", "palette-picker.spec.ts"), "js");
+  }
   console.log(`done. ${manifest.filter((m) => m.scheme === "dark").length} dark, ${manifest.filter((m) => m.scheme === "light").length} light.`);
   process.exit(0);
 }
