@@ -12,6 +12,7 @@
  *   node scripts/vendor.mjs ../tokenview --palette rain-lantern --type ink-study --js
  *   node scripts/vendor.mjs ../tokenview --list
  *   node scripts/vendor.mjs ../hikari --palettes-dir widgets/palettes
+ *   node scripts/vendor.mjs ../secondread --picker --type night-terminal
  *
  * Two files are per-project and the rest are not:
  *   palette.css  one of css/pair-*.css, because a project picks a palette
@@ -20,6 +21,13 @@
  * The others are the same in every project, which is checkable: run this and then diff.
  * They were byte-identical across four projects before this script existed, which is the
  * argument for it rather than against.
+ *
+ * `--picker` is the browser shape: one stylesheet holding every palette, each scoped to
+ * `[data-theme="id"]`, plus a manifest so a picker can render the list without parsing CSS.
+ * A web app cannot swap stylesheets the way a desktop host can reload a file, and a page that
+ * vendored one `pair-*` can never offer a choice at all, which is the state every browser app
+ * here was in. Singles rather than pairs, for the same reason `--palettes-dir` uses them: a
+ * picker is the user saying which they want and a pair is the operating system saying it.
  *
  * `--palettes-dir` is the other shape a consumer can want, and it exists because one of
  * them does: a desktop app that lets you pick a palette while it is running needs all of
@@ -44,11 +52,12 @@ const JS = ["motion.tsx", "motion.test.ts"];
 const REVEAL = ["reveal.ts", "reveal.test.ts"];
 
 const options = (argv) => {
-  const out = { target: null, palette: null, type: null, js: false, reveal: false, list: false, palettesDir: null };
+  const out = { target: null, palette: null, type: null, js: false, reveal: false, list: false, palettesDir: null, picker: false };
   const rest = [];
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === "--js") out.js = true;
+    else if (a === "--picker") out.picker = true;
     else if (a === "--reveal") out.reveal = true;
     else if (a === "--list") out.list = true;
     else if (a === "--palette") out.palette = argv[++i];
@@ -105,6 +114,8 @@ const singles = () =>
     .map((f) => f.slice(0, -".css".length))
     .sort();
 
+const lib = (target) => join(target, "src", "lib");
+
 const opts = options(process.argv.slice(2));
 const palettes = names("pair-");
 const types = names("type-");
@@ -134,20 +145,76 @@ if (opts.palettesDir) {
   process.exit(0);
 }
 
+/**
+ * Every palette in one stylesheet, scoped so an attribute switches them.
+ *
+ * The files in css/ are each written at `:root` because a desktop host loads exactly one. A
+ * browser app has them all at once, so each is rescoped to `[data-theme="name"]` on the way
+ * through. The manifest beside it carries what a picker has to draw: the accent to show as a
+ * swatch, and whether the palette is light or dark, because `color-scheme` has to be set with
+ * the palette or the browser keeps painting scrollbars and form controls for the other one.
+ */
+if (opts.picker) {
+  if (!opts.type) die(`--type is required with --picker. One of: ${types.join(", ")}`);
+  if (!types.includes(opts.type)) die(`unknown type "${opts.type}". One of: ${types.join(", ")}`);
+
+  const theme = join(target, "src", "theme");
+  const found = singles();
+  if (found.length === 0) die("no single-scheme palettes found in css/, which cannot be right");
+
+  const blocks = [];
+  const manifest = [];
+  for (const name of found) {
+    const src = readFileSync(join(HERE, "css", `${name}.css`), "utf8");
+    const body = src.slice(src.indexOf("{") + 1, src.lastIndexOf("}"));
+    const read = (token) => (body.match(new RegExp(`--${token}:\\s*([^;]+)`)) ?? [])[1]?.trim() ?? null;
+    const bg = read("bg");
+    if (!bg) die(`${name}.css has no --bg, so its scheme cannot be determined`);
+    blocks.push(`[data-theme="${name}"] {${body}}`);
+    manifest.push({
+      id: name,
+      label: name.split("-").map((w) => w[0].toUpperCase() + w.slice(1)).join(" "),
+      accent: read("accent"),
+      // Lightness is the last number in the hsl(), and these are generated files so the shape
+      // is reliable. Read rather than hardcoded, so a palette added later classifies itself.
+      scheme: Number((bg.match(/([\d.]+)%\s*\)?\s*$/) ?? [])[1] ?? 0) > 50 ? "light" : "dark",
+    });
+  }
+
+  mkdirSync(theme, { recursive: true });
+  writeFileSync(
+    join(theme, "palettes.css"),
+    header("css/*.css", "css") + `
+/* Every palette, rescoped from :root to [data-theme] so one attribute switches them. */
+
+` + blocks.join("\n\n") + "\n",
+  );
+  writeFileSync(
+    join(theme, "palettes.json"),
+    JSON.stringify(manifest, null, 2) + "\n",
+  );
+  console.log(`  css/*.css -> ${join(theme, "palettes.css")} (${found.length} palettes)`);
+  console.log(`  manifest  -> ${join(theme, "palettes.json")}`);
+  copy(`css/type-${opts.type}.css`, join(theme, "type.css"), "css");
+  for (const fl of SHARED_CSS) copy(`css/${fl}`, join(theme, fl), "css");
+  if (opts.js) for (const fl of JS) copy(`js/${fl}`, join(lib(target), fl), "js");
+  console.log(`done. ${manifest.filter((m) => m.scheme === "dark").length} dark, ${manifest.filter((m) => m.scheme === "light").length} light.`);
+  process.exit(0);
+}
+
 if (!opts.palette) die(`--palette is required. One of: ${palettes.join(", ")}`);
 if (!palettes.includes(opts.palette)) die(`unknown palette "${opts.palette}". One of: ${palettes.join(", ")}`);
 if (!opts.type) die(`--type is required. One of: ${types.join(", ")}`);
 if (!types.includes(opts.type)) die(`unknown type "${opts.type}". One of: ${types.join(", ")}`);
 
 const theme = join(target, "src", "theme");
-const lib = join(target, "src", "lib");
 
 console.log(`vendoring into ${target}`);
 copy(`css/pair-${opts.palette}.css`, join(theme, "palette.css"), "css");
 copy(`css/type-${opts.type}.css`, join(theme, "type.css"), "css");
 for (const f of SHARED_CSS) copy(`css/${f}`, join(theme, f), "css");
-if (opts.js) for (const f of JS) copy(`js/${f}`, join(lib, f), "js");
-if (opts.reveal) for (const f of REVEAL) copy(`js/${f}`, join(lib, f), "js");
+if (opts.js) for (const f of JS) copy(`js/${f}`, join(lib(target), f), "js");
+if (opts.reveal) for (const f of REVEAL) copy(`js/${f}`, join(lib(target), f), "js");
 
 console.log(
   `done. ${opts.js ? "" : "\nnothing under src/lib was touched; pass --js for the React helpers."}`,

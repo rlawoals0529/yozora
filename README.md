@@ -77,7 +77,26 @@ node scripts/vendor.mjs --list      # the palettes and type pairings to choose f
 It writes `src/theme/` and, with `--js`, `src/lib/`, and stamps every file with a header
 naming where it came from and saying not to edit the copy.
 
-### All of them at once, for something that picks one while it runs
+### All of them at once, in one stylesheet, for a browser app
+
+```bash
+node scripts/vendor.mjs ../secondread --picker --type night-terminal
+```
+
+Writes `src/theme/palettes.css` with every palette rescoped from `:root` to
+`[data-theme="name"]`, so switching is one attribute on the root element, and
+`src/theme/palettes.json` beside it with what a picker has to draw: the accent to show as a
+swatch, and whether each one is light or dark.
+
+The scheme matters more than it looks. It has to be written to `color-scheme` along with the
+palette, or the browser goes on painting scrollbars, form controls and the canvas behind the
+page for the other one, and a light palette gets a dark scrollbar down its side that no amount
+of CSS on your own elements will fix.
+
+Every browser app here had vendored a single `pair-*` file, which means none of them could
+offer a choice at all. That is what this mode is for.
+
+### All of them as separate files, for something that picks one while it runs
 
 ```bash
 node scripts/vendor.mjs ../hikari --palettes-dir widgets/palettes
