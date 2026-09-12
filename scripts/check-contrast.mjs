@@ -32,6 +32,7 @@ const DIR = "css";
 const RULES = [
   { fg: "fg", on: ["bg", "panel", "raised"], min: TEXT_MIN, why: "body text" },
   { fg: "dim", on: ["bg", "panel", "raised"], min: TEXT_MIN, why: "notes, captions, secondary headings" },
+  { fg: "accent-2", on: ["bg", "panel", "raised"], min: TEXT_MIN, why: "the second colour, used for words" },
   { fg: "err", on: ["bg", "panel", "raised"], min: TEXT_MIN, why: "error text" },
   { fg: "warn", on: ["bg", "panel", "raised"], min: TEXT_MIN, why: "warning text" },
   { fg: "ok", on: ["bg", "panel", "raised"], min: TEXT_MIN, why: "success text" },
@@ -81,13 +82,14 @@ export function shortfalls(name, tokens) {
 function selfTest() {
   const planted = {
     bg: "#101010", panel: "#141414", raised: "#181818",
-    fg: "#2b2b2b", dim: "#2a2a2a", err: "#221111", warn: "#221a11", ok: "#112211", caution: "#221a11",
+    fg: "#2b2b2b", dim: "#2a2a2a", "accent-2": "#111a22", err: "#221111", warn: "#221a11", ok: "#112211", caution: "#221a11",
     accent: "#8b7cf6", "accent-text": "#1a1730", "on-accent": "#8f80f8", "edge-strong": "#151515",
   };
   const found = shortfalls("planted", planted);
   // One per rule, so a rule that stops measuring is caught rather than covered by its neighbour.
   const wanted = [
-    "--fg on --raised", "--dim on --bg", "--dim on --panel", "--err on --bg", "--warn on --bg",
+    "--fg on --raised", "--dim on --bg", "--dim on --panel", "--accent-2 on --bg",
+    "--err on --bg", "--warn on --bg",
     "--ok on --bg", "--caution on --bg", "--accent-text on --bg", "--on-accent on --accent",
     "--edge-strong on --bg",
   ];
@@ -99,7 +101,7 @@ function selfTest() {
   // And the reverse: a palette that passes must not be reported, or the check is just noise.
   const clean = {
     bg: "#101010", panel: "#141414", raised: "#181818",
-    fg: "#ffffff", dim: "#9a9a9a", err: "#ff8b8b", warn: "#e0a860", ok: "#6fcf97", caution: "#e0a860",
+    fg: "#ffffff", dim: "#9a9a9a", "accent-2": "#7fd0d9", err: "#ff8b8b", warn: "#e0a860", ok: "#6fcf97", caution: "#e0a860",
     accent: "#8b7cf6", "accent-text": "#a99bff", "on-accent": "#0c0a18", "edge-strong": "#6a6a6a",
   };
   if (shortfalls("clean", clean).length) {

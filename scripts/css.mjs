@@ -131,7 +131,13 @@ for (const t of themes) {
   // token sits, and text goes on top of those: --dim on --raised was the one pairing left
   // failing after the first pass, at 4.04:1 under a tokenizer's ids.
   const grounds = [surface.bg, surface.panel, surface.raised];
-  for (const token of ["dim", "err", "warn", "ok", "caution"]) {
+  // --accent-2 is in this list and --accent is not, which looks inconsistent and is not.
+  // The source calls it `suggestion`: it is a colour for WORDS, and it is used as words
+  // everywhere it appears - a unit in a margin, a confidence band, a tag. It was under
+  // 4.5:1 on nine of the fifteen palettes, as low as 2.11, on the one figure a notepad
+  // exists to show. --accent is a fill and a brand mark, so it keeps its value and hands
+  // the readable variant to --accent-text below.
+  for (const token of ["dim", "accent-2", "err", "warn", "ok", "caution"]) {
     if (vars[token]) vars[token] = liftToContrast(vars[token], grounds, TEXT_MIN);
   }
 

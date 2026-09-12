@@ -76,6 +76,9 @@ palettes have no reason to carry:
 repainting the brand to satisfy a caption is the wrong trade; the readable variants sit
 beside it instead. `--edge` stays a hairline for separators, which are decoration.
 
+`--accent-2` IS corrected, which looks inconsistent and is not: the source calls it
+`suggestion`, and it is a colour for words everywhere it appears.
+
 `scripts/check-contrast.mjs` measures the generated files and fails on any shortfall.
 `--self-test` plants a palette that must fail, so a green run has proved it can go red.
 
