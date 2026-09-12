@@ -9,6 +9,7 @@
  * remembering six paths.
  *
  * Usage:
+ *   node scripts/vendor.mjs ../streaming-markdown --picker --probe --dest demo
  *   node scripts/vendor.mjs ../tokenview --palette rain-lantern --type ink-study --js
  *   node scripts/vendor.mjs ../tokenview --list
  *   node scripts/vendor.mjs ../hikari --palettes-dir widgets/palettes
@@ -95,7 +96,7 @@ const REVEAL = ["reveal.ts", "reveal.test.ts"];
 const PROBE = "contrast-probe.ts";
 
 const options = (argv) => {
-  const out = { target: null, palette: null, type: null, js: false, reveal: false, list: false, palettesDir: null, picker: false, probe: false, pickerUi: false, pickerKeys: false };
+  const out = { target: null, palette: null, type: null, js: false, reveal: false, list: false, palettesDir: null, picker: false, probe: false, pickerUi: false, pickerKeys: false, dest: null };
   const rest = [];
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
@@ -106,6 +107,7 @@ const options = (argv) => {
     else if (a === "--picker") out.picker = true;
     else if (a === "--reveal") out.reveal = true;
     else if (a === "--list") out.list = true;
+    else if (a === "--dest") out.dest = argv[++i];
     else if (a === "--palette") out.palette = argv[++i];
     else if (a === "--palettes-dir") out.palettesDir = argv[++i];
     else if (a === "--type") out.type = argv[++i];
@@ -149,7 +151,15 @@ function copy(source, dest, kind) {
 /** The single-scheme palettes. What counts as one lives in scripts/palettes.mjs. */
 const singles = () => paletteFiles(join(HERE, "css"), { singles: true });
 
-const lib = (target) => join(target, "src", "lib");
+/**
+ * Where the vendored files land, under the target.
+ *
+ * `src` for almost everything, and configurable because one consumer keeps its whole page in
+ * `demo/`. Its theme files carried this repo's "refresh with vendor.mjs" header while the
+ * script had no way to write them there, which makes the header a lie and the copy a fork.
+ */
+const lib = (target) => join(target, DEST, "lib");
+let DEST = "src";
 
 const opts = options(process.argv.slice(2));
 const palettes = names("pair-");
@@ -165,9 +175,10 @@ if (opts.list) {
 if (!opts.target) die("give a target project directory, or --list to see the choices");
 const target = resolve(opts.target);
 if (!existsSync(target)) die(`${target} does not exist`);
-// A project that does not have src/ is almost certainly the wrong path, and writing a
-// theme directory into the wrong repo is worse than refusing.
-if (!existsSync(join(target, "src"))) die(`${target} has no src/, so it is probably not the project you meant`);
+if (opts.dest) DEST = opts.dest;
+// A project that does not have the destination directory is almost certainly the wrong path,
+// and writing a theme directory into the wrong repo is worse than refusing.
+if (!existsSync(join(target, DEST))) die(`${target} has no ${DEST}/, so it is probably not the project you meant`);
 
 // --palettes-dir is a whole mode of its own, so it does not want --palette or --type.
 if (opts.palettesDir) {
@@ -196,7 +207,7 @@ if (opts.picker) {
   // have. Omit it and whatever type.css is already there is left alone.
   if (opts.type && !types.includes(opts.type)) die(`unknown type "${opts.type}". One of: ${types.join(", ")}`);
 
-  const theme = join(target, "src", "theme");
+  const theme = join(target, DEST, "theme");
   const found = singles();
   if (found.length === 0) die("no single-scheme palettes found in css/, which cannot be right");
 
@@ -257,7 +268,7 @@ if (!palettes.includes(opts.palette)) die(`unknown palette "${opts.palette}". On
 if (!opts.type) die(`--type is required. One of: ${types.join(", ")}`);
 if (!types.includes(opts.type)) die(`unknown type "${opts.type}". One of: ${types.join(", ")}`);
 
-const theme = join(target, "src", "theme");
+const theme = join(target, DEST, "theme");
 
 console.log(`vendoring into ${target}`);
 copy(`css/pair-${opts.palette}.css`, join(theme, "palette.css"), "css");
