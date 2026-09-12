@@ -176,6 +176,20 @@ if (!opts.target) die("give a target project directory, or --list to see the cho
 const target = resolve(opts.target);
 if (!existsSync(target)) die(`${target} does not exist`);
 if (opts.dest) DEST = opts.dest;
+
+/*
+ * --js and --picker-ui ship React. Writing them into a project that has none leaves files
+ * nothing imports and a typecheck that fails on `Cannot find module 'react'` - which is what
+ * happened, from a command line that meant to say --picker-keys and said --js as well.
+ * Refusing is better than a copy nobody asked for in a repo nobody re-reads.
+ */
+if (opts.js || opts.pickerUi) {
+  const manifest = join(target, "package.json");
+  const deps = existsSync(manifest)
+    ? { ...JSON.parse(readFileSync(manifest, "utf8")).dependencies, ...JSON.parse(readFileSync(manifest, "utf8")).devDependencies }
+    : {};
+  if (!deps.react) die(`${target} does not depend on react, so --js and --picker-ui have nothing to run in`);
+}
 // A project that does not have the destination directory is almost certainly the wrong path,
 // and writing a theme directory into the wrong repo is worse than refusing.
 if (!existsSync(join(target, DEST))) die(`${target} has no ${DEST}/, so it is probably not the project you meant`);
