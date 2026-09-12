@@ -17,7 +17,7 @@
  * or unmounting the control stops the theme being applied at all.
  */
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
-import { createThemeStore, grouped, type Theme } from "./theme.js";
+import { createThemeStore, DEFAULT_THEME, grouped, type Theme } from "./theme.js";
 
 /** The manifest's own shape, before `scheme` is narrowed. Imported JSON widens it to string. */
 export interface ManifestEntry {
@@ -50,7 +50,7 @@ export function useThemeList(manifest: readonly ManifestEntry[]): Theme[] {
 export function useTheme(
   manifest: readonly ManifestEntry[],
   storageKey: string,
-  initial = "twilight-comet",
+  initial = DEFAULT_THEME,
 ): [string, (id: string) => void] {
   const themes = useThemeList(manifest);
   const [store] = useState(() => createThemeStore(themes, initial, storageKey));
