@@ -11,6 +11,17 @@
 <link rel="stylesheet" href="./theme/texture.css">
 <link rel="stylesheet" href="./theme/motion.css">
 <link rel="stylesheet" href="./style.css">
+<script>
+  /* Before first paint, so the page never shows one palette and swaps to another.
+     Every palette block in palettes.css declares its own color-scheme, so setting the attribute
+     is enough; the module later sets it again through the store, which is a no-op when they
+     agree. Wrapped because localStorage throws outright in a private window. */
+  (function () {
+    var t;
+    try { t = localStorage.getItem("yozora:site-theme"); } catch (e) {}
+    document.documentElement.setAttribute("data-theme", t || "twilight-comet");
+  })();
+</script>
 </head>
 <body class="grain">
 <a class="skip" href="#palettes">Skip to the palettes</a>

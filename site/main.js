@@ -67,4 +67,4 @@ document.getElementById("pairings").innerHTML = pairings
   )
   .join("");
 
-apply(stored ?? "rain-lantern");
+apply(stored ?? "twilight-comet");
