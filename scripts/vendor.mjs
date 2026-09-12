@@ -13,6 +13,7 @@
  *   node scripts/vendor.mjs ../tokenview --list
  *   node scripts/vendor.mjs ../hikari --palettes-dir widgets/palettes
  *   node scripts/vendor.mjs ../secondread --picker --type night-terminal
+ *   node scripts/vendor.mjs ../tokenview --picker --probe
  *
  * Two files are per-project and the rest are not:
  *   palette.css  one of css/pair-*.css, because a project picks a palette
@@ -54,12 +55,21 @@ const PICKER_JS = ["theme.ts", "theme.test.ts"];
  *  is dead code that still has to be kept in step. */
 const REVEAL = ["reveal.ts", "reveal.test.ts"];
 
+/**
+ * The contrast probe, for a project that drives its pages with Playwright.
+ *
+ * It lands in e2e/ rather than src/lib/, because it is a test helper and a bundler should
+ * never see it. Opt in, since a project with no browser suite has nothing to call it from.
+ */
+const PROBE = "contrast-probe.ts";
+
 const options = (argv) => {
-  const out = { target: null, palette: null, type: null, js: false, reveal: false, list: false, palettesDir: null, picker: false };
+  const out = { target: null, palette: null, type: null, js: false, reveal: false, list: false, palettesDir: null, picker: false, probe: false };
   const rest = [];
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === "--js") out.js = true;
+    else if (a === "--probe") out.probe = true;
     else if (a === "--picker") out.picker = true;
     else if (a === "--reveal") out.reveal = true;
     else if (a === "--list") out.list = true;
@@ -206,6 +216,7 @@ if (opts.picker) {
   for (const fl of SHARED_CSS) copy(`css/${fl}`, join(theme, fl), "css");
   for (const fl of PICKER_JS) copy(`js/${fl}`, join(lib(target), fl), "js");
   if (opts.js) for (const fl of JS) copy(`js/${fl}`, join(lib(target), fl), "js");
+  if (opts.probe) copy(`js/${PROBE}`, join(target, "e2e", PROBE), "js");
   console.log(`done. ${manifest.filter((m) => m.scheme === "dark").length} dark, ${manifest.filter((m) => m.scheme === "light").length} light.`);
   process.exit(0);
 }

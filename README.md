@@ -79,6 +79,11 @@ beside it instead. `--edge` stays a hairline for separators, which are decoratio
 `scripts/check-contrast.mjs` measures the generated files and fails on any shortfall.
 `--self-test` plants a palette that must fail, so a green run has proved it can go red.
 
+That check can only say the tokens are fine. What actually fails is where they land: a
+`--dim` that clears `--bg` sitting on a chip painted `--raised`. `js/contrast-probe.ts` is
+the other half, and it runs in a browser: vendor it with `--probe` and call `probeContrast`
+from a Playwright test, once per distinct state the page can be in.
+
 ```css
 @import "./theme/palette.css";      /* one pair */
 @import "./theme/base.css";         /* structure */
