@@ -194,6 +194,15 @@ if (opts.js || opts.pickerUi) {
 // and writing a theme directory into the wrong repo is worse than refusing.
 if (!existsSync(join(target, DEST))) die(`${target} has no ${DEST}/, so it is probably not the project you meant`);
 
+/*
+ * The probe is not tied to a mode.
+ *
+ * It was copied inside the --picker branch, so asking for it alongside --palettes-dir was
+ * accepted and silently did nothing: that branch exits before reaching it. A flag that is
+ * quietly ignored is worse than one that is rejected.
+ */
+if (opts.probe) copy(`js/${PROBE}`, join(target, "e2e", PROBE), "js");
+
 // --palettes-dir is a whole mode of its own, so it does not want --palette or --type.
 if (opts.palettesDir) {
   const dir = join(target, opts.palettesDir);
@@ -263,7 +272,6 @@ if (opts.picker) {
   for (const fl of SHARED_CSS) copy(`css/${fl}`, join(theme, fl), "css");
   for (const fl of PICKER_JS) copy(`js/${fl}`, join(lib(target), fl), "js");
   if (opts.js) for (const fl of JS) copy(`js/${fl}`, join(lib(target), fl), "js");
-  if (opts.probe) copy(`js/${PROBE}`, join(target, "e2e", PROBE), "js");
   if (opts.pickerKeys) for (const fl of PICKER_KEYS) copy(`js/${fl}`, join(lib(target), fl), "js");
   if (opts.pickerUi) {
     copy(`js/${PICKER_UI}`, join(lib(target), PICKER_UI), "js");

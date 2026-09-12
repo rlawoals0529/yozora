@@ -42,6 +42,14 @@ export interface Probe {
   samples: string[];
   /** `TAG.class` of each of those, so a caller can name an element that must have been seen. */
   classes: string[];
+  /**
+   * How many distinct grounds the sweep actually painted.
+   *
+   * Evidence that applying a palette did something. Without it a sweep that silently fails to
+   * switch - the wrong `apply` for how this page loads its palettes - measures one palette
+   * however many times, and reports that as full coverage. One is the number to refuse.
+   */
+  distinctGrounds: number;
 }
 
 export interface ProbeOptions {
@@ -54,7 +62,21 @@ export interface ProbeOptions {
    * White is the browser's own default canvas, so it is the default here.
    */
   backdrop?: string;
+  /**
+   * How a palette gets applied.
+   *
+   * Setting `data-theme` on the root is how a page with all fifteen palettes in one scoped
+   * stylesheet switches, which is most of them. A consumer that ships one file per palette
+   * and loads one at a time has no attribute to set, and the default silently does nothing
+   * there - every palette measures identical numbers and the sweep is one palette fifteen
+   * times, reported as fifteen.
+   */
+  apply?: (page: Page, theme: string) => Promise<void>;
 }
+
+const setDataTheme = async (page: Page, theme: string) => {
+  await page.evaluate((id) => document.documentElement.setAttribute("data-theme", id), theme);
+};
 
 /**
  * @param themes the palettes to sweep, from the generated manifest.
@@ -66,16 +88,17 @@ export interface ProbeOptions {
 export async function probeContrast(
   page: Page,
   themes: readonly { id: string }[],
-  { backdrop = "#ffffff" }: ProbeOptions = {},
+  { backdrop = "#ffffff", apply = setDataTheme }: ProbeOptions = {},
 ): Promise<Probe> {
   const failures: Reading[] = [];
   let measured = 0;
   let styles = 0;
   let samples: string[] = [];
   let classes: string[] = [];
+  const grounds = new Set<string>();
 
   for (const theme of themes) {
-    await page.evaluate((id) => document.documentElement.setAttribute("data-theme", id), theme.id);
+    await apply(page, theme.id);
     await page.waitForTimeout(SETTLE);
 
     const rows = await page.evaluate((behind: string) => {
@@ -213,6 +236,7 @@ export async function probeContrast(
       // a notation the parser did not know, and an unreadable colour counted as no finding.
       if (!fg || !bg) throw new Error(`unreadable colour "${row.color}" on "${row.bg}" at ${row.cls}`);
       measured++;
+      grounds.add(row.bg);
       const alpha = fg[3] * row.opacity;
       const flat = alpha < 1 ? blend([fg[0], fg[1], fg[2], alpha], bg) : [fg[0], fg[1], fg[2]];
       const ratio = contrast(flat, [bg[0], bg[1], bg[2]]);
@@ -224,7 +248,7 @@ export async function probeContrast(
     }
   }
 
-  return { failures, measured, styles, samples, classes };
+  return { failures, measured, styles, samples, classes, distinctGrounds: grounds.size };
 }
 
 export const describeFailures = (f: Reading[]): string =>
